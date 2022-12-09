@@ -1,10 +1,10 @@
 import React from "react"
 
-const FAQ = () => {
+const Admin = () => {
     return (
         <div>
-            FAQ
+            Admin
         </div>
     )
 }
-export default FAQ
+export default Admin
