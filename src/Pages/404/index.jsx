@@ -1,10 +1,9 @@
 import React from "react"
-
-const FAQ = () => {
+const NotFound = () => {
     return (
         <div>
-            FAQ
+            Not found
         </div>
     )
 }
-export default FAQ
+export default NotFound
