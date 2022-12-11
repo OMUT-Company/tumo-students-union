@@ -14,4 +14,6 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
+app.use("/api/admin",require("./routes/adminRouts"))
+
 app.listen(port,()=>console.log(`Server started on port ${port}`))
