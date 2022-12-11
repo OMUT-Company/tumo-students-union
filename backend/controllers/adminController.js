@@ -112,7 +112,23 @@ const login = asyncHandler(async (req, res) => {
     }
 })
 
+//@desc Get Admin details
+//@route GET /api/admin/me
+//@access private
+
+const me = asyncHandler(async (req, res) => {
+    res.status(200).json({
+        success: true,
+        data: {
+            result: req.admin,
+            message: null
+        },
+        error: null
+    })
+})
+
 module.exports = {
     registration,
-    login
+    login,
+    me
 }

@@ -8,11 +8,11 @@ const protect = asyncHandler(async (req, res, next) => {
         if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
             try {
                 //Get token from header
-                token = req.headers.authorization.split(" ")[2]
+                token = req.headers.authorization.split(" ")[1]
                 //Verify token
                 const decode = jwt.verify(token, process.env.JWT_SECRET)
                 //Get user from the token
-                req.user = await Admin.findById(decode.id).select("-password")
+                req.admin = await Admin.findById(decode.id).select("-password")
 
                 next()
             } catch (error) {
