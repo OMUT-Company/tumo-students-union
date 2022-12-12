@@ -1,7 +1,9 @@
 const asyncHandler = require("express-async-handler")
-const Admin = require("../models/AdminModel")
 const bcrypt = require('bcryptjs')
 const {generateToken} = require("../utils/generateToken")
+
+const Admin = require("../models/AdminModel")
+const Organisation = require("../models/OrganizationModel")
 
 //@desc Register new admin
 //@route POST /api/admin
@@ -115,7 +117,6 @@ const login = asyncHandler(async (req, res) => {
 //@desc Get Admin details
 //@route GET /api/admin/me
 //@access private
-
 const me = asyncHandler(async (req, res) => {
     res.status(200).json({
         success: true,
@@ -130,5 +131,5 @@ const me = asyncHandler(async (req, res) => {
 module.exports = {
     registration,
     login,
-    me
+    me,
 }
