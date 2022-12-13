@@ -1,1 +1,0 @@
-# tumo-students-union
