@@ -1,5 +1,5 @@
 
-function input(props) {
+function Input(props) {
     const {labelValue}=props
     return(
         <div >
@@ -9,4 +9,4 @@ function input(props) {
      </div>
     )
 }
-export default input
+export default Input
