@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler")
 const Event = require("../models/EventModel")
+const Volunteer = require("../models/VolunteerModel")
 
 //@desc Create new event
 //@route POST /api/event
@@ -101,9 +102,66 @@ const remove = asyncHandler(async (req, res) => {
     }
 })
 
+//@desc Submit to events
+//@route POST /api/event/voluntarily
+//@access public
+const applyAnEvent = asyncHandler(async (req, res) => {
+    const {eventId, name, surname, placeOfStudy, email} = req.body
+
+    try {
+        const volunteer = await Volunteer.create({
+            name,
+            surname,
+            placeOfStudy,
+            email
+        })
+
+        if (volunteer) {
+            const event = await Event.findById(eventId)
+
+            event.volunteers.push(volunteer._id)
+
+            const newEventApply = await Event.updateOne({
+                "_id": eventId
+            }, {
+                $set: {
+                    "volunteers": event.volunteers
+                }
+            })
+
+            if (newEventApply) {
+                res.status(200).json({
+                    success: true,
+                    data: {
+                        result: null,
+                        message: "You successfully applied for event",
+                        error: null
+                    }
+                })
+            }
+        } else {
+            res.status(400).json({
+                success: false,
+                data: null,
+                error: {
+                    message: "Something went wrong"
+                }
+            })
+        }
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            data: null,
+            error: {
+                message: "Something went wrong"
+            }
+        })
+    }
+})
 
 module.exports = {
     event,
     get,
-    remove
+    remove,
+    applyAnEvent
 }
