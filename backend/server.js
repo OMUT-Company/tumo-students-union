@@ -16,6 +16,5 @@ app.use(express.urlencoded({extended:false}))
 
 app.use("/api/admin",require("./routes/adminRouts"))
 app.use("/api/organization",require("./routes/organizationRouts"))
-app.use("/api/event",require("./routes/eventRouts"))
 
 app.listen(port,()=>console.log(`Server started on port ${port}`))
