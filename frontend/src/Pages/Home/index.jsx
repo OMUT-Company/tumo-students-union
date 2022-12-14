@@ -1,11 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
+import './style.scss'
+import Video from "./Video"
 
 const Home = () => {
     return (
-        <div>
-            Home
-
-      </div>
+        <Video />
     )
 }
 export default Home
