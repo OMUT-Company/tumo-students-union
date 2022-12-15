@@ -1,13 +1,7 @@
 import {configureStore} from "@reduxjs/toolkit"
-import faqReducer from "./Content/ContentSlice"
-
+import authReducer from "./Admin/adminSlice"
 export const store = configureStore({
     reducer: {
-        faq: faqReducer
+        auth:authReducer,
     },
-
-    middleware: getDefaultMiddleware =>
-        getDefaultMiddleware({
-            serializableCheck: false,
-        }),
 })
