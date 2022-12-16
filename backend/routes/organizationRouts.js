@@ -16,7 +16,7 @@ const {
 router.post("/", protect, create)
 router.get("/get", protect, get)
 router.put("/update", protect, update)
-router.delete("/deleted", deleted)
+router.delete("/deleted/:id", deleted)
 router.post("/offer", offer)
 router.get("/offer/get", protect, getOffers)
 router.post("/offer/confirm", protect, confirmOffer)

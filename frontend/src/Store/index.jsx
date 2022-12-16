@@ -1,9 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit"
-import faqReducer from "./Content/ContentSlice"
+import adminReducer from "./Admin/AdminSlice"
 
 export const store = configureStore({
     reducer: {
-        faq: faqReducer
+        admin:adminReducer
     },
 
     middleware: getDefaultMiddleware =>

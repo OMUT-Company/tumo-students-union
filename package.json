@@ -12,6 +12,8 @@
   "author": "Artur",
   "license": "MIT",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.0",
+    "axios": "^1.2.1",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "dotenv": "^16.0.0",

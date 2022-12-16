@@ -107,7 +107,7 @@ const update = asyncHandler(async (req, res) => {
     const {id, name, director, address, number} = req.body
 
     try {
-        const organization = await Organisation.findOne({id})
+        const organization = await Organisation.findOne({"_id":id})
 
         if (organization) {
 
@@ -160,11 +160,11 @@ const update = asyncHandler(async (req, res) => {
 //@route DELETE /api/organization/delete
 //@access private
 const deleted = asyncHandler(async (req, res) => {
-    const {id} = req.body
+    const {id} = req.params
 
     try {
         if (id) {
-            Organisation.findOneAndDelete({id}).then((result) => {
+            Organisation.findByIdAndDelete({"_id":id}).then((result) => {
                 res.status(200).json({
                     success: true,
                     data: {
