@@ -36,6 +36,16 @@ const deleteOrganization = async (data) => {
     return res.data
 }
 
+const updateOrganization = async (data)=>{
+
+    const res = await axios.put("/api/organization/update",data,{
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    })
+
+    return res.data
+}
 export const adminService = {
     signIn,
     addOrganization,
