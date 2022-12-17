@@ -1,7 +1,16 @@
+import Header from "./Header"
+import Footer from "./Footer"
 
-const Header = () => {
-    return (
-        <p>Header</p>
-    )
+const Wrap = (WrapComponent) => {
+    return (props) => {
+        return (
+            <>
+                <Header />
+                <WrapComponent {...props} />
+                <Footer />
+            </>
+
+        )
+    }
 }
-export default Header
+export default Wrap

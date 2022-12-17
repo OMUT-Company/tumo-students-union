@@ -1,8 +1,12 @@
 @import '../Scss/color.scss';
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700;900&display=swap');
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
 
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Titillium Web',
+    sans-serif;
 }
 
 *,
@@ -21,13 +25,6 @@
 a:focus,
 a:active {
     outline: none;
-}
-
-nav,
-footer,
-header,
-aside {
-    display: block;
 }
 
 html,
@@ -56,7 +53,9 @@ button::-moz-focus-inner {
     padding: 0;
     border: 0;
 }
-
+a {
+    color: inherit;
+}
 a,
 a:visited {
     text-decoration: none;
@@ -72,7 +71,8 @@ ul li {
 
 img {
     vertical-align: top;
-    width: 100%;
+   
+    max-width: 100%;
 }
 
 h1,
@@ -97,4 +97,20 @@ input {
 
 input:focus {
     border: 1px solid $greyColor;
+}
+p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+}
+.wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: auto;
+}
+.wrapp{
+    width: 80%;
+    margin: auto;
 }
