@@ -1,24 +1,19 @@
+@import '../../Scss/color.scss';
+
 .container{
     position: relative;
        width: 100vw;
-       height: 64vh;
     margin: auto;
-}
-.video {
+    .video {
    object-fit: cover;
-//    width: 100vw;
-//    height: 64vh;
-//    max-width: 100vw;
-//    max-height: 100%;
-
-       width: 100%;
-       height: 100%;
-       max-width: 100vw;
-       max-height: 100%;
+   width: 100vw;
+   height: 74vw;
+   max-width: 100%;
+   max-height: 100%;
 }
 .text {
     position: absolute;
-    color: #fff;
+    color: $whiteColor;
     text-align: center;
     font-size: 8vw;
     top: 39%;
@@ -27,8 +22,31 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-@media screen and (max-width: 700px) {
-    .text {
-        display: none;
+}
+
+.events-header{
+font-weight: 700;
+font-size: 42px;
+line-height: 140%;
+text-align: left;
+color: $backgroundBlue;
+}
+.about-union{
+    display: flex;
+   
+ padding: 45px 10px;
+    align-items: center;
+    h3{
+       font-weight: 700; 
+       font-size: 30px;
+           padding-bottom: 20px;
     }
+    p{
+        padding: 0.5em;
+    }
+}
+@media screen and (max-width: 900px) {
+.about-union{
+ flex-wrap: wrap;
+}
 }
