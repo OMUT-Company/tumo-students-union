@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit"
-import {adminService} from "./AdminService";
+import {adminService} from "./adminService";
 
 const initialState = {
     signIn: {
