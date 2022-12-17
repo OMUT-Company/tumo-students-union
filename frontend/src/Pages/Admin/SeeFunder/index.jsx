@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import DashboardLayout from "../../../Layouts/DashboardLayout";
 import {useDispatch, useSelector} from "react-redux";
-import {getAllFunders, deleteCurrentOrganization, reset} from "../../../Store/Admin/AdminSlice";
+import {getAllFunders, deleteCurrentOrganization, reset} from "../../../Store/Admin/adminSlice";
 import Cart from "../../../Components/atoms/cart";
 import "./style.scss"
 import Spinner from "../../../Components/atoms/Spinner";

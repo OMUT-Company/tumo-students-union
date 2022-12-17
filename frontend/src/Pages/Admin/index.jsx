@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, Form, Input} from 'antd';
 import "./style.scss"
 import {useDispatch, useSelector} from "react-redux";
-import {signIn} from "../../Store/Admin/AdminSlice";
+import {signIn} from "../../Store/Admin/adminSlice";
 import Notification from "../../Components/atoms/Notification";
 import {useNavigate} from "react-router-dom";
 

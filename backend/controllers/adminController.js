@@ -74,10 +74,9 @@ const login = asyncHandler(async (req, res) => {
     const {email, password} = req.body
 
     const admin = await Admin.findOne({email})
-
+console.log(email,password)
     if (admin && (await bcrypt.compare(password, admin.password))) {
         if (admin.verify) {
-            console.log(admin)
             const data = {
                 id: admin._id,
                 name: admin.name,

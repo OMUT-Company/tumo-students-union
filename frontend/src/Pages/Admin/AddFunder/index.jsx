@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Form, Input} from 'antd';
 
-import {addOrganization} from "../../../Store/Admin/AdminSlice";
+import {addOrganization} from "../../../Store/Admin/adminSlice";
 
 import DashboardLayout from "../../../Layouts/DashboardLayout";
 import Notification from "../../../Components/atoms/Notification";

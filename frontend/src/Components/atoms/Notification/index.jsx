@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {notification} from 'antd';
 import {useDispatch} from "react-redux";
-import {reset} from "../../../Store/Admin/AdminSlice";
+import {reset} from "../../../Store/Admin/adminSlice";
 
 const Notification = ({message, type, placement, resetSection,setError}) => {
     const [api, contextHolder] = notification.useNotification();
