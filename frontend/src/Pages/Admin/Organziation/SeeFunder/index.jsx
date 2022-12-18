@@ -1,16 +1,15 @@
 import React, {useEffect, useState} from "react"
-import DashboardLayout from "../../../Layouts/DashboardLayout";
+import DashboardLayout from "../../../../Layouts/DashboardLayout";
 import {useDispatch, useSelector} from "react-redux";
 
-import {getAllFunders, reset} from "../../../Store/Admin/adminSlice";
+import {getAllFunders, reset} from "../../../../Store/Admin/adminSlice";
 
-import Cart from "../../../Components/atoms/cart";
+import Notification from "../../../../Components/atoms/Notification";
+import Cart from "../../../../Components/atoms/cart";
 import Modals from "./Modals"
-import Spinner from "../../../Components/atoms/Spinner";
-import Notification from "../../../Components/atoms/Notification";
 
 import "./style.scss"
-import {png} from "../../../Assets/png";
+import {png} from "../../../../Assets/png";
 const SeeFunder = () => {
     const dispatch = useDispatch()
 
@@ -78,7 +77,6 @@ const SeeFunder = () => {
                 resetSection={status?.resetSection}
                 setError={setStatus}
             />
-            <Spinner loading={(isLoading || deleteOrganization.isLoading)}/>
         </DashboardLayout>
     )
 }
