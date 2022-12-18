@@ -6,7 +6,7 @@ const Volunteer = require("../models/VolunteerModal")
 //@route POST /api/event
 //@access private
 const event = asyncHandler(async (req, res) => {
-    const {type, name, description, date, place,financiers} = req.body
+    const {type, name, description, date, place, financiers} = req.body
 
     try {
         if (!type.en || !name.en || !description.en || !date.from || !date.to || !place || !financiers.length) {
@@ -73,7 +73,7 @@ const remove = asyncHandler(async (req, res) => {
     const {id} = req.params
 
     try {
-        const event = await Event.findByIdAndDelete({"_id":id})
+        const event = await Event.findByIdAndDelete({"_id": id})
         if (event) {
             res.status(200).json({
                 success: true,
@@ -107,47 +107,87 @@ const remove = asyncHandler(async (req, res) => {
 //@route POST /api/event/voluntarily
 //@access public
 const applyAnEvent = asyncHandler(async (req, res) => {
-    const {eventId, name, surname, placeOfStudy, email} = req.body
+    const {eventId, name, surname, previouslyApplied, email, age, phoneNumber, gender} = req.body
 
     try {
-        const volunteer = await Volunteer.create({
-            name,
-            surname,
-            placeOfStudy,
-            email
-        })
+        const isVolunteer = await Volunteer.find({email})
 
-        if (volunteer) {
-            const event = await Event.findById(eventId)
-
-            event.volunteers.push(volunteer._id)
-
-            const newEventApply = await Event.updateOne({
-                "_id": eventId
-            }, {
-                $set: {
-                    "volunteers": event.volunteers
-                }
+        if (!isVolunteer.length) {
+            const volunteer = await Volunteer.create({
+                name,
+                surname,
+                age,
+                phoneNumber,
+                previouslyApplied,
+                email,
+                gender
             })
 
-            if (newEventApply) {
-                res.status(200).json({
-                    success: true,
-                    data: {
-                        result: null,
-                        message: "You successfully applied for event",
-                        error: null
+            if (volunteer) {
+                const event = await Event.findById({"_id": eventId})
+
+                event.volunteers.push(volunteer._id)
+
+                const newEventApply = await Event.updateOne({
+                    "_id": eventId
+                }, {
+                    $set: {
+                        "volunteers": event.volunteers
+                    }
+                })
+
+                if (newEventApply) {
+                    res.status(200).json({
+                        success: true,
+                        data: {
+                            result: null,
+                            message: "You successfully applied for event",
+                            error: null
+                        }
+                    })
+                }
+            } else {
+                res.status(400).json({
+                    success: false,
+                    data: null,
+                    error: {
+                        message: "Something went wrong"
                     }
                 })
             }
         } else {
-            res.status(400).json({
-                success: false,
-                data: null,
-                error: {
-                    message: "Something went wrong"
+            const event = await Event.findById({"_id": eventId})
+
+            if (!event.volunteers.includes(isVolunteer[0]._id)) {
+                event.volunteers.push(isVolunteer[0]._id)
+
+                const newEventApply = await Event.updateOne({
+                    "_id": eventId
+                }, {
+                    $set: {
+                        "volunteers": event.volunteers
+                    }
+                })
+
+                if (newEventApply) {
+                    res.status(200).json({
+                        success: true,
+                        data: {
+                            result: null,
+                            message: "You successfully applied for event",
+                            error: null
+                        }
+                    })
                 }
-            })
+            } else {
+                res.status(400).json({
+                    success: false,
+                    data: null,
+                    error: {
+                        message: "You have already applied to this event"
+                    }
+                })
+            }
         }
     } catch (error) {
         res.status(400).json({

@@ -7,15 +7,27 @@ const VolunteerSchema = mongoose.Schema({
         },
         surname: {
             type: String,
-            required: [true, "Please add name"]
+            required: [true, "Please add surname"]
+        },
+        age: {
+            type: Number,
+            required: [true, "Please add age"]
+        },
+        gender: {
+            type: String,
+            required: [true, "Please add gender"]
+        },
+        phoneNumber: {
+            type: Number,
+            required: [true, "Please add age"]
         },
         email: {
             type: String,
             required: [true, "Please add email"]
         },
-        placeOfStudy: {
-            type: String,
-            required: [true, "Please add place of study"]
+        previouslyApplied: {
+            type: Boolean,
+            required: [true, "Please add previously"]
         }
     },
     {
