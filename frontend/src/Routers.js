@@ -8,9 +8,11 @@ import Admin from "./Pages/Admin";
 import Error from "./Pages/Error";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import Protected from "./Layouts/Protected";
-import AddFunder from "./Pages/Admin/AddFunder";
-import SeeFunder from "./Pages/Admin/SeeFunder";
-import SeeSuggestions from "./Pages/Admin/SeeSuggestions";
+import AddFunder from "./Pages/Admin/Organziation/AddFunder";
+import SeeFunder from "./Pages/Admin/Organziation/SeeFunder";
+import SeeSuggestions from "./Pages/Admin/Organziation/SeeSuggestions";
+import AddEvent from "./Pages/Admin/Event/AddEvent";
+import SeeEvent from "./Pages/Admin/Event/SeeEvent";
 
 export const routers = createBrowserRouter([
     {
@@ -61,6 +63,16 @@ export const routers = createBrowserRouter([
     {
         path:"/admin/dashboard/funder/suggestion",
         element:<SeeSuggestions/>,
+        errorElement:<Error/>
+    },
+    {
+        path:"/admin/dashboard/event/add",
+        element:<AddEvent/>,
+        errorElement:<Error/>
+    },
+    {
+        path:"/admin/dashboard/event/see",
+        element:<SeeEvent/>,
         errorElement:<Error/>
     }
 ])
