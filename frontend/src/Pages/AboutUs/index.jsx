@@ -1,4 +1,5 @@
 import React from "react"
+import Wrap from "../../Layouts/DefaultLayout"
 
 const AboutUs = () => {
     return (
@@ -7,4 +8,4 @@ const AboutUs = () => {
         </div>
     )
 }
-export default AboutUs
+export default Wrap(AboutUs)

@@ -1,4 +1,5 @@
 import React from "react"
+import Wrap from "../../Layouts/DefaultLayout"
 
 const FAQ = () => {
     return (
@@ -7,4 +8,4 @@ const FAQ = () => {
         </div>
     )
 }
-export default FAQ
+export default Wrap(FAQ)

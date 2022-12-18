@@ -107,7 +107,7 @@ const update = asyncHandler(async (req, res) => {
     const {id, name, director, address, number} = req.body
 
     try {
-        const organization = await Organisation.findOne({id})
+        const organization = await Organisation.findOne({"_id": id})
 
         if (organization) {
 
@@ -160,11 +160,11 @@ const update = asyncHandler(async (req, res) => {
 //@route DELETE /api/organization/delete
 //@access private
 const deleted = asyncHandler(async (req, res) => {
-    const {id} = req.body
+    const {id} = req.params
 
     try {
         if (id) {
-            Organisation.findOneAndDelete({id}).then((result) => {
+            Organisation.findByIdAndDelete({"_id": id}).then((result) => {
                 res.status(200).json({
                     success: true,
                     data: {
@@ -235,12 +235,11 @@ const offer = asyncHandler(async (req, res) => {
             }
         }
     } catch (error) {
-        console.log(error)
         res.status(400).json({
             success: false,
             data: null,
             error: {
-                message: "Smoething went wrong"
+                message: "Something went wrong"
             }
         })
     }
@@ -275,11 +274,11 @@ const getOffers = asyncHandler(async (req, res) => {
 //@route POST /api/organization/offer/confirm
 //@access private
 const confirmOffer = asyncHandler(async (req, res) => {
-    const {id} = req.body
+    const {id} = req.params
 
     try {
         if (id) {
-            const organization = await OrganizationOffer.findOne({id})
+            const organization = await OrganizationOffer.findById({"_id": id})
             const {name, director, email, address, number} = organization
             if (organization) {
                 const newOrganization = await Organisation.create({
@@ -287,7 +286,7 @@ const confirmOffer = asyncHandler(async (req, res) => {
                 })
 
                 if (newOrganization) {
-                    await OrganizationOffer.findOneAndDelete({id})
+                    await OrganizationOffer.findByIdAndDelete({"_id": id})
 
                     res.status(201).json({
                         success: true,
@@ -340,11 +339,11 @@ const confirmOffer = asyncHandler(async (req, res) => {
 //@route DELETE /api/organization/offer/refuse
 //@access private
 const refuseOffer = asyncHandler(async (req, res) => {
-    const {id} = req.body
+    const {id} = req.params
 
     try {
         if (id) {
-            await OrganizationOffer.findOneAndDelete({id})
+            await OrganizationOffer.findByIdAndDelete({"_id": id})
 
             res.status(200).json({
                 success: true,
