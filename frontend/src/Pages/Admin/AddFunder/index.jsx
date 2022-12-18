@@ -31,7 +31,7 @@ const AddFunder = () => {
     }
 
     return (
-        <DashboardLayout>
+        <DashboardLayout  currentSection={"1"}>
             <div style={{width: "700px"}}>
                 <Form
                     name="basic"

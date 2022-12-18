@@ -46,9 +46,46 @@ const updateOrganization = async (data)=>{
 
     return res.data
 }
+
+const getOrganizationOffer = async ()=>{
+
+    const res = await axios.get("/api/organization/offer/get",{
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    })
+
+    return res.data
+}
+
+const refusedOrganizationOffer = async (data)=>{
+    const {id} = data
+    const res = await axios.delete(`/api/organization/offer/refused/${id}`,{
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    })
+
+    return res.data
+}
+const confirmOrganizationOffer = async (data)=>{
+    const {id} = data
+    const res = await axios.post(`/api/organization/offer/confirm/${id}`,{},{
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    })
+
+    return res.data
+}
+
 export const adminService = {
     signIn,
     addOrganization,
     getAllFunders,
-    deleteOrganization
+    deleteOrganization,
+    updateOrganization,
+    getOrganizationOffer,
+    refusedOrganizationOffer,
+    confirmOrganizationOffer
 }
