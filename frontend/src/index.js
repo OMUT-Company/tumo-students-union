@@ -10,8 +10,8 @@ import "./Scss/main.scss"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-        <Provider store={store}>
-            <RouterProvider router={routers}/>
-        </Provider>
+    <Provider store={store}>
+        <RouterProvider router={routers}/>
+    </Provider>
 );
 
