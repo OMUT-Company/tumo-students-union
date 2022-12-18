@@ -1,24 +1,58 @@
-.container{
-    position: relative;
-    width: 100%;
-    margin: auto;
-}
-.video {
-    width: 100%;
-}
-.text {
+@import '../../Scss/color.scss';
+.container {
+  position: relative;
+  width: 100vw;
+  margin: auto;
+
+  .video {
+    object-fit: cover;
+    width: 100vw;
+    height: 74vw;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .text {
     position: absolute;
-    color: #fff;
+    color: $whiteColor;
     text-align: center;
     font-size: 8vw;
     top: 39%;
-    text-shadow: 0px 0px 2px #000, 0px 0px 4px #000;
+    text-shadow: 0 0 2px #000, 0 0 4px #000;
     z-index: 1;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
 }
-@media screen and (max-width: 700px) {
-    .text {
-        display: none;
-    }
+
+.events-header {
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 140%;
+  text-align: left;
+  color: $backgroundBlue;
 }
+
+.about-union {
+  display: flex;
+
+  padding: 45px 10px;
+  align-items: center;
+
+  h3 {
+    font-weight: 700;
+    font-size: 30px;
+    padding-bottom: 20px;
+  }
+
+  p {
+    padding: 0.5em;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .about-union {
+    flex-wrap: wrap;
+  }
+}
+
