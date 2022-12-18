@@ -53,6 +53,7 @@ const SeeSuggestions = () => {
                                 img={png.Omut}
                                 deleteBtn={true}
                                 infoBtn={true}
+                                updateBtn={true}
                             />
                         </div>
                     )
@@ -75,7 +76,7 @@ const SeeSuggestions = () => {
                     resetSection={status?.resetSection}
                     setError={setStatus}
                 />
-                <Spinner loading={(organizationOfferAnswer.isLoading)}/>
+                <Spinner loading={(organizationOfferAnswer.isLoading || organizationsOffer.isLoading)}/>
             </div>
         </DashboardLayout>
     )

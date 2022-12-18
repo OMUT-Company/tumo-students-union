@@ -1,12 +1,17 @@
 import React from "react"
 import {Modal} from "antd";
-import {refusedOrganizationOffer} from "../../../Store/Admin/adminSlice";
+import {confirmOrganizationOffer, refusedOrganizationOffer} from "../../../Store/Admin/adminSlice";
 import {useDispatch} from "react-redux";
+
 const Modals = ({modal, setCurrentModal, currentOrg}) => {
     const dispatch = useDispatch()
 
     const refusedOffer = () => {
-      dispatch(refusedOrganizationOffer({id: currentOrg._id}))
+        dispatch(refusedOrganizationOffer({id: currentOrg._id}))
+    }
+
+    const approveOffer = () => {
+        dispatch(confirmOrganizationOffer({id: currentOrg._id}))
     }
 
     return (
@@ -42,6 +47,17 @@ const Modals = ({modal, setCurrentModal, currentOrg}) => {
                                         </p>
                                     </li>
                                 </ul>
+                            </div>
+                        </Modal>,
+                    "update":
+                        <Modal
+                            title={"Warning!!!"}
+                            open={modal === "update"}
+                            onOk={() => (setCurrentModal(""), approveOffer())}
+                            onCancel={() => setCurrentModal("")}
+                        >
+                            <div className="organizations_info">
+                                <p>Are you going to approve the offer?</p>
                             </div>
                         </Modal>
                 }[modal]

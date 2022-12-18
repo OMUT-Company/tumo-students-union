@@ -68,6 +68,17 @@ const refusedOrganizationOffer = async (data)=>{
 
     return res.data
 }
+const confirmOrganizationOffer = async (data)=>{
+    const {id} = data
+    const res = await axios.post(`/api/organization/offer/confirm/${id}`,{},{
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    })
+
+    return res.data
+}
+
 export const adminService = {
     signIn,
     addOrganization,
@@ -75,5 +86,6 @@ export const adminService = {
     deleteOrganization,
     updateOrganization,
     getOrganizationOffer,
-    refusedOrganizationOffer
+    refusedOrganizationOffer,
+    confirmOrganizationOffer
 }

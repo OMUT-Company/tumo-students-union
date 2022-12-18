@@ -116,6 +116,15 @@ export const refusedOrganizationOffer = createAsyncThunk("organization/offer/ref
     }
 })
 
+export const confirmOrganizationOffer = createAsyncThunk("organization/offer/confirm",async (data,thunkAPI)=>{
+    try {
+        return await adminService.confirmOrganizationOffer(data)
+    }catch (error){
+        const message = (error.response && error.response.data && error.response.data.error.message)
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 const adminSlice = createSlice({
     name: "admin",
     initialState,
@@ -236,6 +245,22 @@ const adminSlice = createSlice({
                 state.organizationOfferAnswer.data = action.payload
             })
             .addCase(refusedOrganizationOffer.rejected, (state, action) => {
+                state.organizationOfferAnswer.isLoading = false
+                state.organizationOfferAnswer.isSuccess = false
+                state.organizationOfferAnswer.isError = true
+                state.organizationOfferAnswer.data = action.payload
+            })
+
+            .addCase(confirmOrganizationOffer.pending,(state)=>{
+                state.organizationOfferAnswer.isLoading = true
+            })
+            .addCase(confirmOrganizationOffer.fulfilled, (state, action) => {
+                state.organizationOfferAnswer.isLoading = false
+                state.organizationOfferAnswer.isSuccess = true
+                state.organizationOfferAnswer.isError = false
+                state.organizationOfferAnswer.data = action.payload
+            })
+            .addCase(confirmOrganizationOffer.rejected, (state, action) => {
                 state.organizationOfferAnswer.isLoading = false
                 state.organizationOfferAnswer.isSuccess = false
                 state.organizationOfferAnswer.isError = true
