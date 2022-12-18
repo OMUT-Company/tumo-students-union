@@ -235,12 +235,11 @@ const offer = asyncHandler(async (req, res) => {
             }
         }
     } catch (error) {
-        console.log(error)
         res.status(400).json({
             success: false,
             data: null,
             error: {
-                message: "Smoething went wrong"
+                message: "Something went wrong"
             }
         })
     }
@@ -340,11 +339,11 @@ const confirmOffer = asyncHandler(async (req, res) => {
 //@route DELETE /api/organization/offer/refuse
 //@access private
 const refuseOffer = asyncHandler(async (req, res) => {
-    const {id} = req.body
+    const {id} = req.params
 
     try {
         if (id) {
-            await OrganizationOffer.findOneAndDelete({id})
+            await OrganizationOffer.findByIdAndDelete({"_id":id})
 
             res.status(200).json({
                 success: true,

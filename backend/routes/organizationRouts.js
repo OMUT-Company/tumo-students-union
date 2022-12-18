@@ -20,6 +20,6 @@ router.delete("/deleted/:id", deleted)
 router.post("/offer", offer)
 router.get("/offer/get", protect, getOffers)
 router.post("/offer/confirm", protect, confirmOffer)
-router.delete("/offer/refused", protect, refuseOffer)
+router.delete("/offer/refused/:id", protect, refuseOffer)
 
 module.exports = router

@@ -10,6 +10,7 @@ import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import Protected from "./Layouts/Protected";
 import AddFunder from "./Pages/Admin/AddFunder";
 import SeeFunder from "./Pages/Admin/SeeFunder";
+import SeeSuggestions from "./Pages/Admin/SeeSuggestions";
 
 export const routers = createBrowserRouter([
     {
@@ -55,6 +56,11 @@ export const routers = createBrowserRouter([
     {
         path:"/admin/dashboard/funder/see",
         element:<SeeFunder/>,
+        errorElement:<Error/>
+    },
+    {
+        path:"/admin/dashboard/funder/suggestion",
+        element:<SeeSuggestions/>,
         errorElement:<Error/>
     }
 ])
