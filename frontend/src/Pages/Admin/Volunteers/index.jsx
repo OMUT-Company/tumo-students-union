@@ -2,18 +2,22 @@ import React from "react-dom"
 import DashboardLayout from "../../../Layouts/DashboardLayout";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
+
 import {getAllVolunteers, removeVolunteer, updateVolunteer} from "../../../Store/Admin/adminSlice";
 
 import {Button, Space, Table} from 'antd';
 import Notification from "../../../Components/atoms/Notification";
+import {png} from "../../../Assets/png";
 
 const {Column, ColumnGroup} = Table;
 
 
 const Volunteers = () => {
     const dispatch = useDispatch()
-    const {volunteers,volunteersProcess} = useSelector(state => state.admin)
+    const {volunteers, volunteersProcess} = useSelector(state => state.admin)
     const [status, setStatus] = useState({})
+    const [refresh,setRefresh] = useState(false)
+
     const data = volunteers.data?.data.result.map((elm, index) => {
         return {
             key: index,
@@ -25,15 +29,15 @@ const Volunteers = () => {
             email: elm.email,
             gender: elm.gender,
             applied: elm.previouslyApplied ? "Yes" : "No",
-            new:elm.new
+            new: elm.new
         }
     })
 
-    useEffect(()=>{
-       if(!volunteers.data){
-           dispatch(getAllVolunteers())
-       }
-    },[])
+    useEffect(() => {
+        if (!volunteers.data) {
+            dispatch(getAllVolunteers())
+        }
+    }, [])
 
     useEffect(() => {
         if (volunteersProcess.isError) {
@@ -54,11 +58,14 @@ const Volunteers = () => {
                 resetSection: "volunteersProcess"
             })
         }
-    }, [volunteersProcess.isSuccess,volunteersProcess.isError])
+    }, [volunteersProcess.isSuccess, volunteersProcess.isError])
 
 
     return (
         <DashboardLayout currentSection={"6"}>
+            <div onClick={()=>dispatch(getAllVolunteers())} className={`reload ${volunteers.isLoading ? "loading" : ""}`}>
+                <img alt="refresh" src={png.Refresh}/>
+            </div>
             <Table dataSource={data}>
                 <ColumnGroup title="Name">
                     <Column title="First Name" dataIndex="firstname" key="firstname"/>
@@ -74,10 +81,12 @@ const Volunteers = () => {
                     render={(_, record) => (
                         <Space size="middle">
                             <Button href={`mailto:${record.email}`} type="primary">Send Mail</Button>
-                            <Button onClick={()=>dispatch(removeVolunteer({id:record.id}))} type="primary" danger>Remove</Button>
+                            <Button onClick={() => dispatch(removeVolunteer({id: record.id}))} type="primary"
+                                    danger>Remove</Button>
                             {
                                 record.new &&
-                                <Button onClick={()=>dispatch(updateVolunteer({id:record.id}))} type="primary" ghost>{record.new}New</Button>
+                                <Button onClick={() => dispatch(updateVolunteer({id: record.id}))} type="primary"
+                                        ghost>{record.new}New</Button>
                             }
                         </Space>
                     )}

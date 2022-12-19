@@ -32,12 +32,7 @@ const items = [
 
     getItem('Volunteers', 'sub3', <TeamOutlined />, [
         getItem('See Volunteers', '6'),
-        getItem('Option 10', '10'),
-        getItem('Option 11', '11'),
-        getItem('Option 12', '12'),
     ]),
-
-    getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
 ];
 
 const DashboardLayout = ({children, currentSection}) => {
