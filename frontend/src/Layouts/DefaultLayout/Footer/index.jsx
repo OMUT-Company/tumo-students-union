@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom"
-
-import SelectIt from "../../../Components/atoms/select"
-
 import '../Footer/style.scss'
-import {png} from "../../../Assets/png";
+import logo from "../../../Assets/png/logo2.png";
 
 const Footer = () => {
     return (
@@ -11,21 +8,20 @@ const Footer = () => {
             <div className="wrapper">
                 <section className="footer__about">
                     <div className="footer__logo">
-                        <img src={png.Logo} alt="logo" />
+                        <img src={logo} alt="logo" />
                     </div>
                     <p>Lorem ipsum dolor  it amet consectetur sit amet consectetur amo.</p>
                 </section>
                 <section className="footer__info">
                     <div className="footer__contact">
                         <h5>Contact Information</h5>
-                        <p>address</p>
+                        <p>Halabyan 2</p>
                         <p>hakobyang899@gmail.com</p>
                         <p>+374 66 66 66</p>
                     </div>
-
                 </section>
                 <div>
-                    <Link to='/faq'>FAQ | About</Link>
+                    <Link to='/faq'>FAQ</Link>
                 </div>
             </div>
             <hr />
@@ -42,8 +38,6 @@ const Footer = () => {
                 </ul>
 
             </section>
-
-            <SelectIt />
         </footer >
     )
 }

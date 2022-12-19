@@ -1,19 +1,34 @@
-import React from "react"
-import {Link} from "react-router-dom"
-
+import React, { useState } from "react"
+import { NavLink } from "react-router-dom"
+import LanguageToggle from "./LanguageToggle"
 import '../Header/style.scss'
+import logo from '../../../Assets/png/logo2.png'
+
 
 const Header = () => {
+    const [isMobile, setIsMobile] = useState(false)
+
     return (
-        <React.Fragment>
-            <nav className='navbar'>
-                <div className='navbar-container'>
-                    <Link to='/' className='navbar-logo'>
-                        <i class="fa-solid fa-bars"></i>skype
-                    </Link>
+        <nav className='navbar'>
+            <NavLink to='/'>
+                <div className="navbar-logo">
+                    <img src={logo} alt="logo" />
                 </div>
-            </nav>
-        </React.Fragment>
+            </NavLink>
+            <div className="toggle-button" onClick={() => setIsMobile(!isMobile)}>
+                {isMobile ? <i class="fa-regular fa-xmark"></i> : < i class="fa-solid fa-bars" ></i >}
+            </div>
+            <div className={isMobile ? 'navLinksMobile' : 'navLinks'} >
+                <NavLink to='/about'>About</NavLink>
+                <NavLink to='/about'>About Us</NavLink>
+                <NavLink to='/events'>Manage Events</NavLink>
+                <NavLink to='/faq'>FAQ</NavLink>
+            </div>
+            {/* <LanguageToggle /> */}
+        </nav>
+
+
     )
 }
 export default Header
+

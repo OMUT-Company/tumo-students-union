@@ -21,7 +21,7 @@ const create = asyncHandler(async (req, res) => {
                 }
             })
         } else {
-            if (!name || !director || !address || !number || !email) {
+            if (!name || !director || !address || !number) {
                 res.status(400).json({
                     success: false,
                     data: null,
