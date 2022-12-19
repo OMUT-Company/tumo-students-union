@@ -2,7 +2,7 @@ import React, {memo} from 'react';
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom"
 
-import {AppstoreOutlined, SettingOutlined, ApartmentOutlined} from '@ant-design/icons';
+import {AppstoreOutlined, TeamOutlined, ApartmentOutlined} from '@ant-design/icons';
 import {Button, Menu} from 'antd';
 import Spinner from "../../Components/atoms/Spinner";
 
@@ -30,8 +30,8 @@ const items = [
         getItem('See Events', '5'),
     ]),
 
-    getItem('Navigation Three', 'sub4', <SettingOutlined/>, [
-        getItem('Option 9', '9'),
+    getItem('Volunteers', 'sub3', <TeamOutlined />, [
+        getItem('See Volunteers', '6'),
         getItem('Option 10', '10'),
         getItem('Option 11', '11'),
         getItem('Option 12', '12'),
@@ -50,7 +50,9 @@ const DashboardLayout = ({children, currentSection}) => {
         organizationsOffer,
         organizationOfferAnswer,
         addEvent,
-        events
+        events,
+        volunteers,
+        volunteersProcess
     } = useSelector(state => state.admin)
     const onClick = (e) => {
 
@@ -69,6 +71,9 @@ const DashboardLayout = ({children, currentSection}) => {
                 break
             case "5":
                 navigate("/admin/dashboard/event/see")
+                break
+            case "6":
+                navigate("/admin/dashboard/volunteer")
         }
     };
 
@@ -92,7 +97,7 @@ const DashboardLayout = ({children, currentSection}) => {
                             onClick={onClick}
                             style={{width: 256}}
                             defaultSelectedKeys={[currentSection]}
-                            defaultOpenKeys={['sub1']}
+                            defaultOpenKeys={['sub1',"sub2","sub3"]}
                             mode="inline"
                             items={items}
                         />
@@ -111,7 +116,9 @@ const DashboardLayout = ({children, currentSection}) => {
                     organizationsOffer.isLoading ||
                     organizationOfferAnswer.isLoading ||
                     addEvent.isLoading ||
-                    events.isLoading
+                    events.isLoading ||
+                    volunteers.isLoading ||
+                    volunteersProcess.isLoading
                 )}
             />
         </React.Fragment>

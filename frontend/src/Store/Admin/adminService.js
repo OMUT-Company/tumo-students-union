@@ -110,6 +110,38 @@ const removeEvent = async (data) => {
     return res.data
 }
 
+const getAllVolunteers = async () =>{
+    const res = await axios.get(`/api/volunteer/see`, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    })
+
+    return res.data
+}
+
+const removeVolunteer = async (data) =>{
+    const {id} = data
+    const res = await axios.delete(`/api/volunteer/delete/${id}`, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    })
+
+    return res.data
+}
+
+const updateVolunteer = async (data) =>{
+    const {id} = data
+    const res = await axios.put(`/api/volunteer/update/${id}`,{}, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    })
+
+    return res.data
+}
+
 export const adminService = {
     signIn,
     addOrganization,
@@ -121,5 +153,8 @@ export const adminService = {
     confirmOrganizationOffer,
     addEvent,
     getEvents,
-    removeEvent
+    removeEvent,
+    getAllVolunteers,
+    removeVolunteer,
+    updateVolunteer
 }

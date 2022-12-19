@@ -33,7 +33,7 @@ const AddFunder = () => {
 
     return (
         <DashboardLayout  currentSection={"1"}>
-            <div style={{width: "700px"}}>
+            <div className="admin-dashboard-content_add-funder">
                 <Form
                     name="basic"
                     wrapperCol={{
@@ -83,7 +83,7 @@ const AddFunder = () => {
                     </Form.Item>
                     <Form.Item
                         wrapperCol={{
-                            offset: 20,
+                            offset: 10,
                             span: 5,
                         }}
                     >
