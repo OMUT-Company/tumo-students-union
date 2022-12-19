@@ -5,6 +5,9 @@ footer{
     margin-top: 55px;
     padding: 30px 20px;
     color: $whiteColor;
+    a{  &:hover{
+         color: $socialIcon;
+     }}
 }
 
 .footer__logo {
@@ -17,6 +20,9 @@ footer{
 
 .footer__contact p {
     padding: 5px 0;
+      &:hover{
+         color: $socialIcon;
+     }
 }
 
 hr {

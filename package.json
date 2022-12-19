@@ -12,6 +12,9 @@
   "author": "Artur",
   "license": "MIT",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-regular-svg-icons": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@reduxjs/toolkit": "^1.8.0",
     "axios": "^1.2.1",
     "bcryptjs": "^2.4.3",

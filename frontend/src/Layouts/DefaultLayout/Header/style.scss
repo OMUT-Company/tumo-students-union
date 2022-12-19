@@ -1,1 +1,57 @@
- 
+@import '../../../Scss/color.scss';
+
+.navbar-logo {
+    width: 20%;
+}
+
+.navbar {
+    background: $backgroundBlue;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+    a {
+        padding: 0 1rem;
+        color: $whiteColor;
+        align-items: center;
+        display: flex;
+        height: 100%;
+        white-space: nowrap;
+    }
+}
+
+.toggle-button {
+    display: none;
+    color: $whiteColor;
+    font-size: 1.8rem;
+
+    @media screen and (max-width:760px) {
+        display: block;
+    }
+}
+
+.navLinks {
+    display: flex;
+
+    @media screen and (max-width:760px) {
+        display: none;
+    }
+}
+
+.navLinksMobile {
+    position: absolute;
+    display: block;
+    background: $backgroundBlue;
+    left: 0;
+    top: 75px;
+    width: 100%;
+    z-index: 2;
+
+    a {
+        padding: .5em 1em;
+    }
+}
+
+@media screen and (max-width:760px) {}

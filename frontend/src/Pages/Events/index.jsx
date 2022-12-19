@@ -1,4 +1,5 @@
 import React from "react"
+import Wrap from "../../Layouts/DefaultLayout"
 
 const Events = () => {
     return (
@@ -7,4 +8,4 @@ const Events = () => {
         </div>
     )
 }
-export default Events
+export default Wrap(Events)
