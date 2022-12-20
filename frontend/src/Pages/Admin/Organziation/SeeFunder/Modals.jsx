@@ -1,7 +1,7 @@
 import React from "react"
-import {Form, Input, Modal} from "antd";
-import {deleteCurrentOrganization, updateOrganization} from "../../../Store/Admin/adminSlice";
 import {useDispatch} from "react-redux";
+import {Form, Input, Modal} from "antd";
+import {deleteCurrentOrganization, updateOrganization} from "../../../../Store/Admin/adminSlice";
 
 const Modals = ({modal, setCurrentModal, currentOrg}) => {
     const [form] = Form.useForm();

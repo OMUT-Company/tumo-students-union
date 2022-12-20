@@ -50,6 +50,34 @@ const initialState = {
         isError: false,
         errorMessage: null,
         data: null
+    },
+    addEvent:{
+        isLoading: false,
+        isSuccess: false,
+        isError: false,
+        errorMessage: null,
+        data: null
+    },
+    events:{
+        isLoading: false,
+        isSuccess: false,
+        isError: false,
+        errorMessage: null,
+        data: null
+    },
+    volunteers:{
+        isLoading: false,
+        isSuccess: false,
+        isError: false,
+        errorMessage: null,
+        data: null
+    },
+    volunteersProcess:{
+        isLoading: false,
+        isSuccess: false,
+        isError: false,
+        errorMessage: null,
+        data: null
     }
 }
 
@@ -119,6 +147,60 @@ export const refusedOrganizationOffer = createAsyncThunk("organization/offer/ref
 export const confirmOrganizationOffer = createAsyncThunk("organization/offer/confirm",async (data,thunkAPI)=>{
     try {
         return await adminService.confirmOrganizationOffer(data)
+    }catch (error){
+        const message = (error.response && error.response.data && error.response.data.error.message)
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+export const addNewEvent = createAsyncThunk("add/event",async (data,thunkAPI)=>{
+    try {
+        return await adminService.addEvent(data)
+    }catch (error){
+        const message = (error.response && error.response.data && error.response.data.error.message)
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+export const getAllEvents = createAsyncThunk("get/all/events",async(data,thunkAPI)=>{
+    try {
+        return await adminService.getEvents()
+    }catch (error){
+        const message = (error.response && error.response.data && error.response.data.error.message)
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+export const removeEvent = createAsyncThunk("delete/current/event",async (data,thunkAPI)=>{
+    try {
+        return await adminService.removeEvent(data)
+    }catch (error){
+        const message = (error.response && error.response.data && error.response.data.error.message)
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+export const getAllVolunteers = createAsyncThunk("get/volunteers",async (_,thunkAPI)=>{
+    try {
+        return await adminService.getAllVolunteers()
+    }catch (error){
+        const message = (error.response && error.response.data && error.response.data.error.message)
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+export const removeVolunteer = createAsyncThunk("delete/volunteer",async (data,thunkAPI)=>{
+    try {
+       return  await adminService.removeVolunteer(data)
+    }catch (error){
+        const message = (error.response && error.response.data && error.response.data.error.message)
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+export const updateVolunteer = createAsyncThunk("update/volunteer",async (data,thunkAPI)=>{
+    try {
+        return await adminService.updateVolunteer(data)
     }catch (error){
         const message = (error.response && error.response.data && error.response.data.error.message)
         return thunkAPI.rejectWithValue(message)
@@ -265,6 +347,102 @@ const adminSlice = createSlice({
                 state.organizationOfferAnswer.isSuccess = false
                 state.organizationOfferAnswer.isError = true
                 state.organizationOfferAnswer.data = action.payload
+            })
+
+            .addCase(addNewEvent.pending,(state)=>{
+                state.addEvent.isLoading = true
+            })
+            .addCase(addNewEvent.fulfilled, (state, action) => {
+                state.addEvent.isLoading = false
+                state.addEvent.isSuccess = true
+                state.addEvent.isError = false
+                state.addEvent.data = action.payload
+            })
+            .addCase(addNewEvent.rejected, (state, action) => {
+                state.addEvent.isLoading = false
+                state.addEvent.isSuccess = false
+                state.addEvent.isError = true
+                state.addEvent.data = action.payload
+            })
+
+            .addCase(getAllEvents.pending,(state,action)=>{
+                state.events.isLoading = true
+            })
+            .addCase(getAllEvents.fulfilled, (state, action) => {
+                state.events.isLoading = false
+                state.events.isSuccess = true
+                state.events.isError = false
+                state.events.data = action.payload
+            })
+            .addCase(getAllEvents.rejected, (state, action) => {
+                state.events.isLoading = false
+                state.events.isSuccess = false
+                state.events.isError = true
+                state.events.data = action.payload
+            })
+
+            .addCase(removeEvent.pending,(state)=>{
+                state.addEvent.isLoading = true
+            })
+            .addCase(removeEvent.fulfilled, (state, action) => {
+                state.addEvent.isLoading = false
+                state.addEvent.isSuccess = true
+                state.addEvent.isError = false
+                state.addEvent.data = action.payload
+            })
+            .addCase(removeEvent.rejected, (state, action) => {
+                state.addEvent.isLoading = false
+                state.addEvent.isSuccess = false
+                state.addEvent.isError = true
+                state.addEvent.data = action.payload
+            })
+
+            .addCase(getAllVolunteers.pending,(state)=>{
+                state.volunteers.isLoading = true
+            })
+            .addCase(getAllVolunteers.fulfilled, (state, action) => {
+                state.volunteers.isLoading = false
+                state.volunteers.isSuccess = true
+                state.volunteers.isError = false
+                state.volunteers.data = action.payload
+            })
+            .addCase(getAllVolunteers.rejected, (state, action) => {
+                state.volunteers.isLoading = false
+                state.volunteers.isSuccess = false
+                state.volunteers.isError = true
+                state.volunteers.data = action.payload
+            })
+
+            .addCase(removeVolunteer.pending,(state)=>{
+                state.volunteersProcess.isLoading = true
+            })
+            .addCase(removeVolunteer.fulfilled, (state, action) => {
+                state.volunteersProcess.isLoading = false
+                state.volunteersProcess.isSuccess = true
+                state.volunteersProcess.isError = false
+                state.volunteersProcess.data = action.payload
+            })
+            .addCase(removeVolunteer.rejected, (state, action) => {
+                state.volunteersProcess.isLoading = false
+                state.volunteersProcess.isSuccess = false
+                state.volunteersProcess.isError = true
+                state.volunteersProcess.data = action.payload
+            })
+
+            .addCase(updateVolunteer.pending,(state)=>{
+                state.volunteersProcess.isLoading = true
+            })
+            .addCase(updateVolunteer.fulfilled, (state, action) => {
+                state.volunteersProcess.isLoading = false
+                state.volunteersProcess.isSuccess = true
+                state.volunteersProcess.isError = false
+                state.volunteersProcess.data = action.payload
+            })
+            .addCase(updateVolunteer.rejected, (state, action) => {
+                state.volunteersProcess.isLoading = false
+                state.volunteersProcess.isSuccess = false
+                state.volunteersProcess.isError = true
+                state.volunteersProcess.data = action.payload
             })
     }
 })

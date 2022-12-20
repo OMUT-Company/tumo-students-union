@@ -1,6 +1,6 @@
 import React from "react"
 import {Modal} from "antd";
-import {confirmOrganizationOffer, refusedOrganizationOffer} from "../../../Store/Admin/adminSlice";
+import {confirmOrganizationOffer, refusedOrganizationOffer} from "../../../../Store/Admin/adminSlice";
 import {useDispatch} from "react-redux";
 
 const Modals = ({modal, setCurrentModal, currentOrg}) => {

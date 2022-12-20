@@ -1,7 +1,10 @@
-import React, {useState,memo} from 'react';
-import {useNavigate} from "react-router-dom";
-import {AppstoreOutlined, SettingOutlined, ApartmentOutlined} from '@ant-design/icons';
+import React, {memo} from 'react';
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom"
+
+import {AppstoreOutlined, TeamOutlined, ApartmentOutlined} from '@ant-design/icons';
 import {Button, Menu} from 'antd';
+import Spinner from "../../Components/atoms/Spinner";
 
 import "./style.scss"
 
@@ -22,27 +25,32 @@ const items = [
         getItem('See Suggestion', '3'),
     ]),
 
-    getItem('Navigation Two', 'sub2', <AppstoreOutlined/>, [
-        getItem('Option 5', '5'),
-        getItem('Option 6', '6'),
-        getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
+    getItem('Events', 'sub2', <AppstoreOutlined/>, [
+        getItem('Add Events', '4'),
+        getItem('See Events', '5'),
     ]),
 
-    getItem('Navigation Three', 'sub4', <SettingOutlined/>, [
-        getItem('Option 9', '9'),
-        getItem('Option 10', '10'),
-        getItem('Option 11', '11'),
-        getItem('Option 12', '12'),
+    getItem('Volunteers', 'sub3', <TeamOutlined />, [
+        getItem('See Volunteers', '6'),
     ]),
-
-    getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
 ];
 
-const DashboardLayout = ({children,currentSection}) => {
+const DashboardLayout = ({children, currentSection}) => {
     const navigate = useNavigate()
+    const {
+        addOrganization,
+        organizations,
+        deleteOrganization,
+        updateOrganization,
+        organizationsOffer,
+        organizationOfferAnswer,
+        addEvent,
+        events,
+        volunteers,
+        volunteersProcess
+    } = useSelector(state => state.admin)
     const onClick = (e) => {
 
-        console.log(e)
         switch (e.key) {
             case "1":
                 navigate("/admin/dashboard/funder/add")
@@ -53,6 +61,14 @@ const DashboardLayout = ({children,currentSection}) => {
             case "3":
                 navigate("/admin/dashboard/funder/suggestion")
                 break
+            case "4":
+                navigate("/admin/dashboard/event/add")
+                break
+            case "5":
+                navigate("/admin/dashboard/event/see")
+                break
+            case "6":
+                navigate("/admin/dashboard/volunteer")
         }
     };
 
@@ -62,29 +78,45 @@ const DashboardLayout = ({children,currentSection}) => {
     }
 
     return (
-        <div className="admin-dashboard">
-            <div className="admin-dashboard_head">
-                <div className="admin-dashboard_head_logo" onClick={()=>navigate("/admin/dashboard")}>OMUT</div>
+        <React.Fragment>
+            <div className="admin-dashboard">
+                <div className="admin-dashboard_head">
+                    <div className="admin-dashboard_head_logo" onClick={() => navigate("/admin/dashboard")}>OMUT</div>
+                    <div>
+                        <Button onClick={() => signOut()} type={"primary"}>Sign out</Button>
+                    </div>
+                </div>
                 <div>
-                    <Button onClick={() => signOut()} type={"primary"}>Sign out</Button>
+                    <div className="admin-dashboard_sidebar">
+                        <Menu
+                            onClick={onClick}
+                            style={{width: 256}}
+                            defaultSelectedKeys={[currentSection]}
+                            defaultOpenKeys={['sub1',"sub2","sub3"]}
+                            mode="inline"
+                            items={items}
+                        />
+                    </div>
+                    <div className="admin-dashboard_content">
+                        {children}
+                    </div>
                 </div>
             </div>
-            <div>
-                <div className="admin-dashboard_sidebar">
-                    <Menu
-                        onClick={onClick}
-                        style={{width: 256}}
-                        defaultSelectedKeys={[currentSection]}
-                        defaultOpenKeys={['sub1']}
-                        mode="inline"
-                        items={items}
-                    />
-                </div>
-                <div className="admin-dashboard_content">
-                    {children}
-                </div>
-            </div>
-        </div>
+            <Spinner
+                loading={(
+                    addOrganization.isLoading ||
+                    organizations.isLoading ||
+                    deleteOrganization.isLoading ||
+                    updateOrganization.isLoading ||
+                    organizationsOffer.isLoading ||
+                    organizationOfferAnswer.isLoading ||
+                    addEvent.isLoading ||
+                    events.isLoading ||
+                    volunteers.isLoading ||
+                    volunteersProcess.isLoading
+                )}
+            />
+        </React.Fragment>
     );
 };
 

@@ -2,28 +2,29 @@ import React, {useEffect, useState} from "react"
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Form, Input} from 'antd';
 
-import {addOrganization} from "../../../Store/Admin/adminSlice";
+import {addOrganization, getAllFunders} from "../../../../Store/Admin/adminSlice";
 
-import DashboardLayout from "../../../Layouts/DashboardLayout";
-import Notification from "../../../Components/atoms/Notification";
-import Spinner from "../../../Components/atoms/Spinner";
+import DashboardLayout from "../../../../Layouts/DashboardLayout";
+import Notification from "../../../../Components/atoms/Notification";
+
 
 const AddFunder = () => {
     const dispatch = useDispatch()
     const [form] = Form.useForm();
-    const [error, setError] = useState({})
+    const [status, setStatus] = useState({})
     const {isError, errorMessage,isSuccess,isLoading,data} = useSelector(state => state.admin.addOrganization)
 
     useEffect(() => {
         if (isError){
-            setError({type: "error", message: errorMessage, placement: "topRight", resetSection: "addOrganization"})
+            setStatus({type: "error", message: errorMessage, placement: "topRight", resetSection: "addOrganization"})
         }
     }, [isError, errorMessage])
 
     useEffect(() => {
         if (isSuccess){
             form.resetFields();
-            setError({type: "success", message: data.data.message, placement: "topRight", resetSection: "addOrganization"})
+            dispatch(getAllFunders())
+            setStatus({type: "success", message: data.data.message, placement: "topRight", resetSection: "addOrganization"})
         }
     }, [isSuccess])
     const onFinish = (values) => {
@@ -32,7 +33,7 @@ const AddFunder = () => {
 
     return (
         <DashboardLayout  currentSection={"1"}>
-            <div style={{width: "700px"}}>
+            <div className="admin-dashboard-content_add-funder">
                 <Form
                     name="basic"
                     wrapperCol={{
@@ -82,7 +83,7 @@ const AddFunder = () => {
                     </Form.Item>
                     <Form.Item
                         wrapperCol={{
-                            offset: 20,
+                            offset: 10,
                             span: 5,
                         }}
                     >
@@ -93,13 +94,12 @@ const AddFunder = () => {
                 </Form>
             </div>
             <Notification
-                type={error?.type}
-                message={error?.message}
-                placement={error?.placement}
-                resetSection={error?.resetSection}
-                setError={setError}
+                type={status?.type}
+                message={status?.message}
+                placement={status?.placement}
+                resetSection={status?.resetSection}
+                setError={setStatus}
             />
-            <Spinner loading={isLoading}/>
         </DashboardLayout>
     )
 }

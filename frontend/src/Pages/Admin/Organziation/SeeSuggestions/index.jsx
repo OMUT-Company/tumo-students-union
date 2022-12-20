@@ -1,26 +1,28 @@
 import React, {useEffect, useState} from "react"
-import DashboardLayout from "../../../Layouts/DashboardLayout";
 import {useDispatch, useSelector} from "react-redux";
-import {getOrganizationsOffer,reset} from "../../../Store/Admin/adminSlice";
-import Cart from "../../../Components/atoms/cart";
-import {png} from "../../../Assets/png";
+import {getAllFunders, getOrganizationsOffer, reset} from "../../../../Store/Admin/adminSlice";
+
+import DashboardLayout from "../../../../Layouts/DashboardLayout";
+import Notification from "../../../../Components/atoms/Notification";
+import Cart from "../../../../Components/atoms/cart";
 import Modals from "./Modals";
-import Notification from "../../../Components/atoms/Notification";
-import Spinner from "../../../Components/atoms/Spinner";
+
+import {png} from "../../../../Assets/png";
 
 const SeeSuggestions = () => {
     const dispatch = useDispatch()
-    const {organizationsOffer,organizationOfferAnswer} = useSelector(state => state.admin)
-    const [currentModal, setCurrentModal] = useState({modal:"",id:""})
+    const {organizationsOffer, organizationOfferAnswer} = useSelector(state => state.admin)
+    const [currentModal, setCurrentModal] = useState({modal: "", id: ""})
     const [status, setStatus] = useState({})
 
     useEffect(() => {
-        if(!organizationsOffer.data?.data.result){
+        if (!organizationsOffer.data?.data.result) {
             dispatch(getOrganizationsOffer())
         }
 
-        if(organizationOfferAnswer.isSuccess){
+        if (organizationOfferAnswer.isSuccess) {
             dispatch(getOrganizationsOffer())
+            dispatch(getAllFunders())
             dispatch(reset("organizationOfferAnswer"))
             setStatus({
                 type: "success",
@@ -30,7 +32,7 @@ const SeeSuggestions = () => {
             })
         }
 
-        if(organizationOfferAnswer.isError){
+        if (organizationOfferAnswer.isError) {
             dispatch(reset("organizationOfferAnswer"))
             setStatus({
                 type: "error",
@@ -40,12 +42,12 @@ const SeeSuggestions = () => {
             })
         }
 
-    }, [organizationOfferAnswer.isSuccess,organizationOfferAnswer.isError,organizationsOffer.isSuccess])
+    }, [organizationOfferAnswer.isSuccess, organizationOfferAnswer.isError, organizationsOffer.isSuccess])
     return (
         <DashboardLayout currentSection={"3"}>
             <div className="organizations">
                 {
-                    organizationsOffer.data?.data?.result.map(organization =>
+                    organizationsOffer.data?.data?.result?.map(organization =>
                         <div key={organization._id} className="organizations_item">
                             <Cart
                                 details={organization}
@@ -66,7 +68,7 @@ const SeeSuggestions = () => {
                 }
                 <Modals
                     setCurrentModal={setCurrentModal}
-                    currentOrg={organizationsOffer.data?.data.result.filter(elm=>elm._id === currentModal.id)[0]}
+                    currentOrg={organizationsOffer.data?.data.result.filter(elm => elm._id === currentModal.id)[0]}
                     modal={currentModal.modal}
                 />
                 <Notification
@@ -76,7 +78,6 @@ const SeeSuggestions = () => {
                     resetSection={status?.resetSection}
                     setError={setStatus}
                 />
-                <Spinner loading={(organizationOfferAnswer.isLoading || organizationsOffer.isLoading)}/>
             </div>
         </DashboardLayout>
     )
