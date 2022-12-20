@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom"
 
 import {AppstoreOutlined, TeamOutlined, ApartmentOutlined} from '@ant-design/icons';
@@ -7,6 +7,7 @@ import {Button, Menu} from 'antd';
 import Spinner from "../../Components/atoms/Spinner";
 
 import "./style.scss"
+import {reset} from "../../Store/Admin/adminSlice";
 
 function getItem(label, key, icon, children, type) {
     return {
@@ -37,6 +38,7 @@ const items = [
 
 const DashboardLayout = ({children, currentSection}) => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const {
         addOrganization,
         organizations,
@@ -75,6 +77,7 @@ const DashboardLayout = ({children, currentSection}) => {
     const signOut = () => {
         sessionStorage.removeItem("accessToken")
         navigate("/admin")
+        dispatch(reset("signIn"))
     }
 
     return (
