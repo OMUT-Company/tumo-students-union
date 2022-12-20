@@ -1,18 +1,25 @@
 @import '../../../Scss/color.scss';
 
-footer{
+footer {
     background: $backgroundBlue;
     margin-top: 55px;
     padding: 30px 20px;
     color: $whiteColor;
-    a{  &:hover{
-         color: $socialIcon;
-     }}
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    a {
+        &:hover {
+            color: $socialIcon;
+        }
+    }
 }
 
 .footer__logo {
     width: 42%;
     padding: 20px 0;
+
     img {
         width: 250px;
     }
@@ -20,9 +27,10 @@ footer{
 
 .footer__contact p {
     padding: 5px 0;
-      &:hover{
-         color: $socialIcon;
-     }
+
+    &:hover {
+        color: $socialIcon;
+    }
 }
 
 hr {
@@ -31,13 +39,16 @@ hr {
     border: 0.01px solid $whiteColor;
     margin: 25px auto;
 }
-p i{
+
+p i {
     font-size: 15px;
     padding-right: 5px;
     text-align: center;
 }
+
 .social-links {
     display: flex;
+
     li {
         list-style: none;
         margin: 0 5px;
@@ -50,8 +61,9 @@ p i{
         align-items: center;
         font-size: 20px;
         transition: all ease 0.3s;
-        &:hover{
-            color:$backgroundBlue;
+
+        &:hover {
+            color: $backgroundBlue;
             background: $socialIcon;
             cursor: pointer;
             border: 2px solid $socialIcon;
@@ -61,7 +73,7 @@ p i{
 }
 
 @media screen and (max-width: 920px) {
-    .wrapper{
+    .wrapper {
         flex-wrap: wrap;
     }
 }
@@ -69,11 +81,14 @@ p i{
 @media screen and (max-width: 846px) {
     .wrapper {
         flex-wrap: wrap;
-        flex-direction: column;    }
-    footer{
+        flex-direction: column;
+    }
+
+    footer {
         padding: 15px 10px;
 
     }
+
     .social-links {
         li {
             list-style: none;
@@ -81,7 +96,9 @@ p i{
             width: 30px;
             font-size: 14px;
             margin: 20px 5px 0;
-        }}
+        }
+    }
+
     .footer__logo {
         padding: 0 0 10px 0;
     }

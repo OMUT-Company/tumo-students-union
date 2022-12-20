@@ -6,7 +6,7 @@
     padding: 0;
     margin: 0;
     font-family: 'Titillium Web',
-    sans-serif;
+        sans-serif;
 }
 
 *,
@@ -37,7 +37,9 @@ body {
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+    background-color: #e0e3e8;
 }
+
 
 input,
 button,
@@ -53,9 +55,11 @@ button::-moz-focus-inner {
     padding: 0;
     border: 0;
 }
+
 a {
     color: inherit;
 }
+
 a,
 a:visited {
     text-decoration: none;
@@ -98,19 +102,26 @@ input {
 input:focus {
     border: 1px solid $greyColor;
 }
-p{
+
+p {
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
 }
+
 .wrapper {
     width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     margin: auto;
+
 }
-.wrapp{
+
+.wrapp {
     width: 80%;
     margin: auto;
+    background-color: #e0e3e8;
+    height: 100%;
+
 }

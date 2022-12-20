@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { NavLink } from "react-router-dom"
-import LanguageToggle from "./LanguageToggle"
+import Flag from "./LanguageToggle"
 import '../Header/style.scss'
 import logo from '../../../Assets/png/logo2.png'
 
@@ -24,7 +24,13 @@ const Header = () => {
                 <NavLink to='/events'>Manage Events</NavLink>
                 <NavLink to='/faq'>FAQ</NavLink>
             </div>
-            {/* <LanguageToggle /> */}
+
+            <div className='nav-section'>
+                <Flag text='RU' />
+                <Flag text='ENG' />
+                <Flag text='AM' />
+            </div>
+
         </nav>
 
 

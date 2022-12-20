@@ -12,7 +12,8 @@
     align-items: center;
     padding: 20px;
 
-    a {
+    a,
+    p {
         padding: 0 1rem;
         color: $whiteColor;
         align-items: center;
@@ -53,5 +54,6 @@
         padding: .5em 1em;
     }
 }
-
-@media screen and (max-width:760px) {}
+.nav-section{
+    display: flex;
+}
