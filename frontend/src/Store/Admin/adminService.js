@@ -2,7 +2,6 @@ import axios from "axios"
 
 const accessToken = sessionStorage.getItem("accessToken")
 const signIn = async (data) => {
-    console.log(data)
     const res = await axios.post("/api/admin/login", data)
 
     return res.data
@@ -18,6 +17,7 @@ const addOrganization = async (data) => {
 }
 
 const getAllFunders = async () => {
+    const accessToken = sessionStorage.getItem("accessToken")
     const res = await axios.get("/api/organization/get", {
         headers: {
             Authorization: `Bearer ${accessToken}`
@@ -142,6 +142,15 @@ const updateVolunteer = async (data) =>{
     return res.data
 }
 
+const getAdmin = async () =>{
+    const accessToken = sessionStorage.getItem("accessToken")
+    const res = await axios.get(`/api/admin/me`,{
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    })
+}
+
 export const adminService = {
     signIn,
     addOrganization,
@@ -156,5 +165,6 @@ export const adminService = {
     removeEvent,
     getAllVolunteers,
     removeVolunteer,
-    updateVolunteer
+    updateVolunteer,
+    getAdmin
 }
