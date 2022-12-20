@@ -48,37 +48,37 @@ export const routers = createBrowserRouter([
     },
     {
         path:"/admin/dashboard",
-        element:<AdminDashboard/>,
+        element:<Protected><AdminDashboard/></Protected>,
         errorElement:<Error/>
     },
     {
         path:"/admin/dashboard/funder/add",
-        element:<AddFunder/>,
+        element:<Protected><AddFunder/></Protected>,
         errorElement:<Error/>
     },
     {
         path:"/admin/dashboard/funder/see",
-        element:<SeeFunder/>,
+        element:<Protected><SeeFunder/></Protected>,
         errorElement:<Error/>
     },
     {
         path:"/admin/dashboard/funder/suggestion",
-        element:<SeeSuggestions/>,
+        element:<Protected><SeeSuggestions/></Protected>,
         errorElement:<Error/>
     },
     {
         path:"/admin/dashboard/event/add",
-        element:<AddEvent/>,
+        element:<Protected><AddEvent/></Protected>,
         errorElement:<Error/>
     },
     {
         path:"/admin/dashboard/event/see",
-        element:<SeeEvent/>,
+        element:<Protected><SeeEvent/></Protected>,
         errorElement:<Error/>
     },
     {
         path:"/admin/dashboard/volunteer",
-        element:<Volunteers/>,
+        element:<Protected><Volunteers/></Protected>,
         errorElement:<Error/>
     }
 ])
