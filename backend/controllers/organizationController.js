@@ -198,10 +198,12 @@ const deleted = asyncHandler(async (req, res) => {
 //@route POST /api/organization/offer
 //@access public
 const offer = asyncHandler(async (req, res) => {
-    const {name, director, address, number, message} = req.body
+    const {name, director, address, number, message,email,poxos} = req.body
+
+    console.log(name,director,address,number,email,message,poxos)
 
     try {
-        if (!name || !director || !address || !number || !message) {
+        if (!name || !director || !address || !number || !message || !email) {
             res.status(400).json({
                 success: false,
                 data: null,
