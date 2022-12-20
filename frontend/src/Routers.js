@@ -13,6 +13,7 @@ import SeeFunder from "./Pages/Admin/Organziation/SeeFunder";
 import SeeSuggestions from "./Pages/Admin/Organziation/SeeSuggestions";
 import AddEvent from "./Pages/Admin/Event/AddEvent";
 import SeeEvent from "./Pages/Admin/Event/SeeEvent";
+import Volunteers from "./Pages/Admin/Volunteers";
 
 export const routers = createBrowserRouter([
     {
@@ -73,6 +74,11 @@ export const routers = createBrowserRouter([
     {
         path:"/admin/dashboard/event/see",
         element:<SeeEvent/>,
+        errorElement:<Error/>
+    },
+    {
+        path:"/admin/dashboard/volunteer",
+        element:<Volunteers/>,
         errorElement:<Error/>
     }
 ])

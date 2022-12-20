@@ -22,6 +22,11 @@
     & > div:last-child{
       padding: 25px;
       width: 100%;
+
+      .admin-dashboard-content_add-funder{
+        width: 750px;
+        margin: auto;
+      }
     }
   }
 }

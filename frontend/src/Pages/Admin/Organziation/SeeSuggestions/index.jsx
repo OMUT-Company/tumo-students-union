@@ -47,7 +47,7 @@ const SeeSuggestions = () => {
         <DashboardLayout currentSection={"3"}>
             <div className="organizations">
                 {
-                    organizationsOffer.data?.data?.result.map(organization =>
+                    organizationsOffer.data?.data?.result?.map(organization =>
                         <div key={organization._id} className="organizations_item">
                             <Cart
                                 details={organization}

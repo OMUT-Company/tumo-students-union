@@ -28,6 +28,10 @@ const VolunteerSchema = mongoose.Schema({
         previouslyApplied: {
             type: Boolean,
             required: [true, "Please add previously"]
+        },
+        new: {
+            type: Boolean,
+            default: true
         }
     },
     {
