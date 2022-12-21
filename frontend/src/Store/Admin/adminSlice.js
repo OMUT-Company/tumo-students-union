@@ -198,6 +198,15 @@ export const removeVolunteer = createAsyncThunk("delete/volunteer",async (data,t
     }
 })
 
+export const getAdminDetails = createAsyncThunk("get/admin/details",async (data,thunkAPI)=>{
+    try {
+        return await adminService.getAdmin()
+    }catch (error){
+        const message = (error.response && error.response.data && error.response.data.error.message)
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 export const updateVolunteer = createAsyncThunk("update/volunteer",async (data,thunkAPI)=>{
     try {
         return await adminService.updateVolunteer(data)
@@ -443,6 +452,22 @@ const adminSlice = createSlice({
                 state.volunteersProcess.isSuccess = false
                 state.volunteersProcess.isError = true
                 state.volunteersProcess.data = action.payload
+            })
+
+            .addCase(getAdminDetails.pending,(state)=>{
+                state.signIn.isLoading = true
+            })
+            .addCase(getAdminDetails.fulfilled, (state, action) => {
+                state.signIn.isLoading = false
+                state.signIn.isSuccess = true
+                state.signIn.isError = false
+                state.signIn.data = action.payload
+            })
+            .addCase(getAdminDetails.rejected, (state, action) => {
+                state.signIn.isLoading = false
+                state.signIn.isSuccess = false
+                state.signIn.isError = true
+                state.signIn.data = action.payload
             })
     }
 })

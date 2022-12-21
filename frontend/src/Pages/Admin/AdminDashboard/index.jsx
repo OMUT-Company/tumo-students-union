@@ -1,69 +1,55 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import DashboardLayout from "../../../Layouts/DashboardLayout";
-import { Badge, Calendar } from 'antd';
+import "react-big-calendar/lib/css/react-big-calendar.css"
+import {Calendar, momentLocalizer, Views} from 'react-big-calendar'
+import moment from 'moment'
+import {useDispatch, useSelector} from "react-redux";
+import {getAllEvents} from "../../../Store/Admin/adminSlice";
+import CurrentEventModal from "./Modal";
 
-const getListData = (value) => {
-    console.log(value)
-    let listData;
-    switch (value.date()) {
-        case 8:
-            listData = [
-                { type: 'warning', content: 'This is warning event.' },
-                { type: 'success', content: 'This is usual event.' },
-            ];
-            break;
-        case 10:
-            listData = [
-                { type: 'warning', content: 'This is warning event.' },
-                { type: 'success', content: 'This is usual event.' },
-                { type: 'error', content: 'This is error event.' },
-            ];
-            break;
-        case 15:
-            listData = [
-                { type: 'warning', content: 'This is warning event' },
-                { type: 'success', content: 'This is very long usual event。。....' },
-                { type: 'error', content: 'This is error event 1.' },
-                { type: 'error', content: 'This is error event 2.' },
-                { type: 'error', content: 'This is error event 3.' },
-                { type: 'error', content: 'This is error event 4.' },
-            ];
-            break;
-        default:
-    }
-    return listData || [];
-};
-const getMonthData = (value) => {
-    if (value.month() === 8) {
-        return 1394;
-    }
-};
-const AdminDashboard = () =>{
+let allViews = Object.keys(Views).map((k) => Views[k])
+const AdminDashboard = () => {
+    const dispatch = useDispatch()
+    const [currentModal, setCurrentModal] = useState(false)
+    const [currentEvent, setCurrentEvent] = useState(null)
+    const {data} = useSelector(state => state.admin.events)
+    const localizer = momentLocalizer(moment)
 
-    const monthCellRender = (value) => {
-        const num = getMonthData(value);
-        return num ? (
-            <div className="notes-month">
-                <section>{num}</section>
-                <span>Backlog number</span>
-            </div>
-        ) : null;
-    };
-    const dateCellRender = (value) => {
-        const listData = getListData(value);
-        return (
-            <ul className="events">
-                {listData.map((item) => (
-                    <li key={item.content}>
-                        <Badge status={item} text={item.content} />
-                    </li>
-                ))}
-            </ul>
-        );
+    useEffect(() => {
+        dispatch(getAllEvents())
+    }, [dispatch])
+
+    const onDoubleClickEvent = (e) => {
+        setCurrentModal(true)
+        setCurrentEvent(data.data.result.filter(elm => elm._id === e.id)[0])
     }
-    return(
+
+    return (
         <DashboardLayout>
-            return <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} />;
+            <Calendar
+                localizer={localizer}
+                dayLayoutAlgorithm="no-overlap"
+                events={data?.data?.result?.map((elm, index) => {
+                    return (
+                        {
+                            id: elm._id,
+                            title: elm.type.en,
+                            name: elm.name.en,
+                            start: new Date(elm.date.from),
+                            end: new Date(elm.date.to)
+                        }
+                    )
+                })}
+                showMultiDayTimes
+                step={60}
+                views={allViews}
+                onDoubleClickEvent={onDoubleClickEvent}
+            />
+            <CurrentEventModal
+                currentModal={currentModal}
+                setCurrentModal={setCurrentModal}
+                currentEvent={currentEvent}
+            />
         </DashboardLayout>
     )
 }
