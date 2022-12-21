@@ -12,8 +12,11 @@ import SeeFunder from "./Pages/Admin/Organziation/SeeFunder";
 import SeeSuggestions from "./Pages/Admin/Organziation/SeeSuggestions";
 import AddEvent from "./Pages/Admin/Event/AddEvent";
 import SeeEvent from "./Pages/Admin/Event/SeeEvent";
+<<<<<<< HEAD
 import Volunteers from "./Pages/Admin/Volunteers";
 
+=======
+>>>>>>> Dec20_front
 export const routers = createBrowserRouter([
     {
         path: "/",
