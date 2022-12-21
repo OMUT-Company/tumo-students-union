@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler")
 const Event = require("../models/EventModal")
 const Volunteer = require("../models/VolunteerModal")
+const {sendMail} = require("../utils/nodmailer");
 
 //@desc Create new event
 //@route POST /api/event
@@ -137,6 +138,7 @@ const applyAnEvent = asyncHandler(async (req, res) => {
                 })
 
                 if (newEventApply) {
+                    sendMail({name,surname,email})
                     res.status(200).json({
                         success: true,
                         data: {
@@ -170,6 +172,7 @@ const applyAnEvent = asyncHandler(async (req, res) => {
                 })
 
                 if (newEventApply) {
+                    sendMail({name,surname,email})
                     res.status(200).json({
                         success: true,
                         data: {

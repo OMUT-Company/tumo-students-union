@@ -1,24 +1,30 @@
 import React, {useEffect} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import Spinner from "../../Components/atoms/Spinner";
+import {getAdminDetails} from "../../Store/Admin/adminSlice";
 
 const Protected = ({children}) => {
-    const {isSuccess} = useSelector(state => state.admin.signIn)
+    const {isSuccess, isLoading} = useSelector(state => state.admin.signIn)
     const navigate = useNavigate()
-    console.log(isSuccess)
+    const dispatch = useDispatch()
+    const accessToken = sessionStorage.getItem("accessToken")
+
     useEffect(() => {
-        if (!isSuccess) {
+        dispatch(getAdminDetails())
+    }, [])
+
+    useEffect(() => {
+        if (!accessToken) {
             navigate("/admin")
-        } else {
-            navigate("/admin/dashboard")
         }
     }, [isSuccess])
 
     return (
         <div>
             {
-                isSuccess &&
-                children
+                accessToken &&
+                isLoading ? <Spinner loading={true}/> : isSuccess ? children : (() => navigate("/admin"))()
             }
         </div>
     )
