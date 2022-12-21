@@ -46,8 +46,8 @@ const Home = () => {
     }, [])
 
     return (
-        <div>
-            <Video/>
+        <React.Fragment>
+            <Video />
             <div className="events-container wrapp">
                 <section className="about-union">
                     <h3>👋 We're OMUT Union </h3>
