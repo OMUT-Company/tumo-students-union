@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react"
+import { useTranslation } from "react-i18next"
 import Wrap from "../../Layouts/DefaultLayout"
 import '../FAQ/style.scss'
 
@@ -26,34 +27,56 @@ const faqs = [
     }
 ]
 
+
 const AccordionItem = (props) => {
+
+    // const { t, i18n } = useTranslation()
+
+
     const contentEl = useRef();
     const { handleToggle, active, faq } = props;
-    const { header, id, text } = faq;
+    const { header, id, text } = faq
 
     return (
-        <div className="rc-accordion-card">
-            <div className="rc-accordion-header">
-                <div className={`rc-accordion-toggle ${active === id ? 'active' : ''}`} onClick={() => handleToggle(id)}>
-                    <h5 className="rc-accordion-title">{header}</h5>
-                    <i className="fa fa-chevron-down rc-accordion-icon"></i>
+        <>
+
+            <div className="rc-accordion-card">
+                <div className="rc-accordion-header">
+                    <div className={`rc-accordion-toggle ${active === id ? 'active' : ''}`} onClick={() => handleToggle(id)}>
+                        <h5 className="rc-accordion-title">{header}</h5>
+                        <i className="fa fa-chevron-down rc-accordion-icon"></i>
+                    </div>
+                </div>
+                <div ref={contentEl} className={`rc-collapse ${active === id ? 'show' : ''}`} style={
+                    active === id
+                        ? { height: contentEl.current.scrollHeight }
+                        : { height: "0px" }
+                }>
+                    <div className="rc-accordion-body">
+                        <p>{text}</p>
+                    </div>
                 </div>
             </div>
-            <div ref={contentEl} className={`rc-collapse ${active === id ? 'show' : ''}`} style={
-                active === id
-                    ? { height: contentEl.current.scrollHeight }
-                    : { height: "0px" }
-            }>
-                <div className="rc-accordion-body">
-                    <p>{text}</p>
-                </div>
-            </div>
-        </div>
+        </>
+
     )
 }
 
+async  function ftch()
+{
+    const res = await fetch('http://localhost:3000/frontend/public/locales/am/translation.json', { method: 'POST' })
+
+    return (res.json());
+}
 
 const FAQ = () => {
+    //console.log(ftch());
+    console.log(ftch());
+    // const { t, i18n } = useTranslation()
+    // const changeLanguage = (language) => {
+    //     i18n.changeLanguage(language)
+    // }
+
     const [active, setActive] = useState(null);
 
     const handleToggle = (index) => {
@@ -64,6 +87,7 @@ const FAQ = () => {
         }
     }
 
+
     return (
         <>
             <div className="card-header">
@@ -72,8 +96,6 @@ const FAQ = () => {
             </div>
             <div className="card wrapper" >
                 <div className="card-body">
-
-
                     {faqs.map((faq, index) => {
                         return (
                             <AccordionItem key={index} active={active} handleToggle={handleToggle} faq={faq} />

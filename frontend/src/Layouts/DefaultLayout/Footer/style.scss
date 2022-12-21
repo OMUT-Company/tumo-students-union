@@ -5,7 +5,6 @@ footer {
     margin-top: 55px;
     padding: 30px 20px;
     color: $whiteColor;
-    position: fixed;
     bottom: 0;
     width: 100%;
 
@@ -82,6 +81,10 @@ p i {
     .wrapper {
         flex-wrap: wrap;
         flex-direction: column;
+    }
+
+    .nav-section {
+        display: none;
     }
 
     footer {

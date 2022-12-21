@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import {routers} from "./Routers";
 import {store} from "./Store"
 import "./Scss/main.scss"
+import './Assets/18n'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
