@@ -6,7 +6,7 @@ import './style.scss'
 const Home = () => {
     return (
         <React.Fragment>
-            <Video/>
+            <Video />
             <div className="events-container wrapp">
                 <section className="about-union">
                     <h3>👋 We're OMUT Union </h3>

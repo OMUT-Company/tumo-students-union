@@ -7,7 +7,6 @@ import NotFound from "./Pages/404";
 import Admin from "./Pages/Admin";
 import Error from "./Pages/Error";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
-import Protected from "./Layouts/Protected";
 import AddFunder from "./Pages/Admin/Organziation/AddFunder";
 import SeeFunder from "./Pages/Admin/Organziation/SeeFunder";
 import SeeSuggestions from "./Pages/Admin/Organziation/SeeSuggestions";
@@ -18,7 +17,9 @@ import Volunteers from "./Pages/Admin/Volunteers";
 export const routers = createBrowserRouter([
     {
         path: "/",
-        element: <Home/>,
+        element:
+            <Home/>
+        ,
         errorElement: <Error/>
     },
     {
@@ -28,7 +29,9 @@ export const routers = createBrowserRouter([
     },
     {
         path: "/faq",
-        element: <FAQ/>,
+        element:
+            <FAQ/>
+      ,
         errorElement: <Error/>
     },
     {

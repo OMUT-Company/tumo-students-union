@@ -1,7 +1,7 @@
 @import '../../../Scss/color.scss';
 
 .navbar-logo {
-    width: 20%;
+    width: 92px;
 }
 
 .navbar {
@@ -12,13 +12,24 @@
     align-items: center;
     padding: 20px;
 
-    a {
-        padding: 0 1rem;
+    a,
+    p {
         color: $whiteColor;
         align-items: center;
-        display: flex;
+        display: block;
         height: 100%;
         white-space: nowrap;
+
+    }
+
+    p {
+        padding: 4px;
+
+    }
+
+    a {
+        padding: 0;
+        width: 55%;
     }
 }
 
@@ -34,6 +45,11 @@
 
 .navLinks {
     display: flex;
+
+    a {
+        padding: 0 7px;
+
+    }
 
     @media screen and (max-width:760px) {
         display: none;
@@ -54,4 +70,6 @@
     }
 }
 
-@media screen and (max-width:760px) {}
+.nav-section {
+    display: flex;
+}

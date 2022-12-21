@@ -6,9 +6,12 @@ const Wrap = (WrapComponent) => {
     return (props) => {
         return (
             <React.Fragment>
-                <Header/>
+
+                <Header />
                 <WrapComponent {...props} />
-                <Footer/>
+                <Footer />
+
+
             </React.Fragment>
 
         )
