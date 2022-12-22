@@ -1,12 +1,18 @@
-import React, { useEffect } from "react"
+import React, {useEffect} from "react"
 import Wrap from "../../Layouts/DefaultLayout"
 import Video from "./Video"
 import './style.scss'
-import { useDispatch } from "react-redux";
-import { applyAnEvent, getEvents, organizationOffer, volunteerApply } from "../../Store/Content/contentSlice";
+import {useDispatch} from "react-redux";
+import {applyAnEvent, getEvents, organizationOffer, volunteerApply} from "../../Store/Content/contentSlice";
+import {Button, ConfigProvider, Form, Input, Select} from "antd";
+import {png} from "../../Assets/png";
+import useWindowSize from "../../Hooks/uswWindowSize";
+import JoinUs from "./JoinUs";
+import OrganizationOfferForm from "./OrganizationOfferForm";
 
 const Home = () => {
     const dispatch = useDispatch()
+
     useEffect(() => {
         // dispatch(getEvents())
 
@@ -45,9 +51,10 @@ const Home = () => {
         // }))
     }, [])
 
+
     return (
         <React.Fragment>
-            <Video />
+            {/*<Video />*/}
             <div className="events-container wrapp">
                 <section className="about-union">
                     <h3>👋 We're OMUT Union </h3>
@@ -64,9 +71,12 @@ const Home = () => {
                         All Events
                     </h3>
                 </section>
+                {/*<JoinUs/>*/}
+                <OrganizationOfferForm/>
             </div>
-
         </React.Fragment>
     )
 }
+
+
 export default Wrap(Home)

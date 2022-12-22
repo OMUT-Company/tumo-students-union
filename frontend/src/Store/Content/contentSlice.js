@@ -52,7 +52,6 @@ export const applyAnEvent = createAsyncThunk("user/apply/event",async(data,thunk
 
 export const organizationOffer = createAsyncThunk("organization/offer",async(data,thunkAPI)=>{
     try {
-        console.log(data)
         return await contentService.organizationOffer(data)
     }catch (error){
         const message = (error.response && error.response.data && error.response.data.error.message)
@@ -73,7 +72,7 @@ const contentSlice = createSlice({
     name:"content",
     initialState,
     reducers: {
-        reset: (state, action) => {
+        resetContent: (state, action) => {
             state[action.payload].isLoading = false
             state[action.payload].isSuccess = false
             state[action.payload].isError = false
@@ -152,5 +151,5 @@ const contentSlice = createSlice({
     }
 })
 
-export const {reset} = contentSlice.actions
+export const {resetContent} = contentSlice.actions
 export default contentSlice.reducer

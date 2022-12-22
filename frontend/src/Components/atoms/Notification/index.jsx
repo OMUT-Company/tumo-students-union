@@ -2,15 +2,20 @@ import React, {useEffect} from "react";
 import {notification} from 'antd';
 import {useDispatch} from "react-redux";
 import {reset} from "../../../Store/Admin/adminSlice";
+import {resetContent} from "../../../Store/Content/contentSlice"
 
-const Notification = ({message, type, placement, resetSection,setError}) => {
+const Notification = ({message, type, placement, resetSection,setError,stateOther}) => {
     const [api, contextHolder] = notification.useNotification();
     const dispatch = useDispatch()
 
     useEffect(() => {
         if (message && type) {
             openNotification(message, placement,type)
-            dispatch(reset(resetSection))
+            if(stateOther){
+                dispatch(resetContent(resetSection))
+            }else{
+                dispatch(reset(resetSection))
+            }
             setError({type: "", message: "", placement: "", resetSection: ""})
         }
     }, [message])

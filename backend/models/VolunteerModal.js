@@ -10,7 +10,7 @@ const VolunteerSchema = mongoose.Schema({
             required: [true, "Please add surname"]
         },
         age: {
-            type: Number,
+            type: String,
             required: [true, "Please add age"]
         },
         gender: {
@@ -18,7 +18,7 @@ const VolunteerSchema = mongoose.Schema({
             required: [true, "Please add gender"]
         },
         phoneNumber: {
-            type: Number,
+            type: String,
             required: [true, "Please add age"]
         },
         email: {

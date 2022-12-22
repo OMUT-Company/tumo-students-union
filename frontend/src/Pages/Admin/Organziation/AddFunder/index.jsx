@@ -12,7 +12,7 @@ const AddFunder = () => {
     const dispatch = useDispatch()
     const [form] = Form.useForm();
     const [status, setStatus] = useState({})
-    const {isError, errorMessage,isSuccess,isLoading,data} = useSelector(state => state.admin.addOrganization)
+    const {isError, errorMessage,isSuccess,data} = useSelector(state => state.admin.addOrganization)
 
     useEffect(() => {
         if (isError){
