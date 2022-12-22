@@ -10,14 +10,16 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
-    whitelist:['en','ru','arm'],
+    whitelist: ['en', 'ru', 'arm'],
     debug: true,
-      detection: {
-          order: ['localStorage', 'cookie'],
-          caches:['localStorage','cookie']
-},
+    returnObjects: true,
+    detection: {
+      order: ['localStorage', 'cookie'],
+      caches: ['localStorage', 'cookie']
+    },
     interpolation: {
       escapeValue: false, // not needed for react!!
+
     },
 
     // react i18next special options (optional)

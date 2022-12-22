@@ -30,9 +30,9 @@ const Header = () => {
             </div>
 
             <div className='nav-section'>
-                <p onClick={() => changeLanguage('ru')}>RU</p>
-                <p onClick={() => changeLanguage('en')}>ENG</p>
-                <p onClick={() => changeLanguage('am')}>AM</p>
+                <a onClick={() => changeLanguage('ru')}>RU</a>
+                <a onClick={() => changeLanguage('en')}>ENG</a>
+                <a onClick={() => changeLanguage('am')}>AM</a>
             </div>
 
         </nav>
