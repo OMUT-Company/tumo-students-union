@@ -71,8 +71,7 @@ const Home = () => {
                         All Events
                     </h3>
                 </section>
-                {/*<JoinUs/>*/}
-                <OrganizationOfferForm/>
+                <JoinUs/>
             </div>
         </React.Fragment>
     )
