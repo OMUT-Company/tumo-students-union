@@ -23,9 +23,9 @@ const Header = () => {
                 {isMobile ? <i class="fa-regular fa-xmark"></i> : < i class="fa-solid fa-bars" ></i >}
             </div>
             <div className={isMobile ? 'navLinksMobile' : 'navLinks'} >
-                <NavLink to='/about'>About</NavLink>
-                <NavLink to='/about'>About Us</NavLink>
-                <NavLink to='/events'>Manage Events</NavLink>
+                {/* <NavLink to='/about'>About Us</NavLink> */}
+                <NavLink to='/news'>News</NavLink>
+                <NavLink to='/events'>Investors & Charity</NavLink>
                 <NavLink to='/faq'>FAQ</NavLink>
             </div>
 

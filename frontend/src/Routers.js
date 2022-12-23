@@ -14,6 +14,7 @@ import AddEvent from "./Pages/Admin/Event/AddEvent";
 import SeeEvent from "./Pages/Admin/Event/SeeEvent";
 import Volunteers from "./Pages/Admin/Volunteers";
 import Protected from "./Layouts/Protected";
+import News from "./Pages/News";
 
 export const routers = createBrowserRouter([
     {
@@ -40,6 +41,11 @@ export const routers = createBrowserRouter([
         path: "admin",
         element:<Admin/>,
         errorElement: <Error/>
+    },
+    {
+        path: "news",
+        element: <News />,
+        errorElement: <Error />
     },
     {
         path: "*",
