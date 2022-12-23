@@ -1,7 +1,7 @@
 @import '../../../Scss/color.scss';
 
 .navbar-logo {
-    width: 92px;
+    width: 136px;
 }
 
 .navbar {
@@ -45,10 +45,10 @@
 
 .navLinks {
     display: flex;
-
+    margin-left: -166px;
     a {
-        padding: 0 7px;
-
+     padding: 0 31px 0 0;;
+text-transform: uppercase;
     }
 
     @media screen and (max-width:760px) {
@@ -63,7 +63,7 @@
     left: 0;
     top: 75px;
     width: 100%;
-    z-index: 2;
+    z-index: 6;
 
     a {
         padding: .5em 1em;
@@ -72,4 +72,9 @@
 
 .nav-section {
     display: flex;
+    p{
+        margin: 0 3px;
+        cursor: pointer;
+        border: 1px solid white;
+    }
 }

@@ -1,51 +1,51 @@
-import React, {useEffect, useState} from "react"
+import React, { useEffect, useState } from "react"
 import useWindowSize from "../../Hooks/uswWindowSize";
-import {Button, ConfigProvider, Input, Select} from "antd";
-import {png} from "../../Assets/png";
-import {useDispatch, useSelector} from "react-redux";
-import {volunteerApply} from "../../Store/Content/contentSlice";
+import { Button, ConfigProvider, Input, Select } from "antd";
+import  joinImg  from "../../Assets/png/join.jpeg";
+import { useDispatch, useSelector } from "react-redux";
+import { volunteerApply } from "../../Store/Content/contentSlice";
 import Notification from "../../Components/atoms/Notification";
-import {getAllFunders} from "../../Store/Admin/adminSlice";
+import { getAllFunders } from "../../Store/Admin/adminSlice";
 
 const FormFields = {
     name: "",
     surname: "",
     age: null,
-    gender: {value: "", text: ""},
+    gender: { value: "", text: "" },
     phoneNumber: "",
     email: "",
-    previouslyApplied: {value: "", text: ""}
+    previouslyApplied: { value: "", text: "" }
 }
 const JoinUs = () => {
     const form = JSON.parse(JSON.stringify(FormFields))
     const [formData, setFormData] = useState(form)
     const [status, setStatus] = useState({})
-    const {isError, errorMessage,isSuccess,data} = useSelector(state => state.content.volunteerApply)
+    const { isError, errorMessage, isSuccess, data } = useSelector(state => state.content.volunteerApply)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (isError){
-            setStatus({type: "error", message: errorMessage, placement: "topRight", resetSection: "volunteerApply"})
+        if (isError) {
+            setStatus({ type: "error", message: errorMessage, placement: "topRight", resetSection: "volunteerApply" })
         }
 
-        if (isSuccess){
+        if (isSuccess) {
             const form = JSON.parse(JSON.stringify(FormFields))
             setFormData(form)
-            setStatus({type: "success", message: data.data.message, placement: "topRight", resetSection: "volunteerApply"})
+            setStatus({ type: "success", message: data.data.message, placement: "topRight", resetSection: "volunteerApply" })
         }
-    }, [isError, errorMessage,isSuccess])
+    }, [isError, errorMessage, isSuccess])
 
 
     const inputHandle = (e) => {
-        const copy = {...formData}
+        const copy = { ...formData }
 
         if (e.target) {
             copy[e.target.name] = e.target.value
         } else {
             if (e === "yes" || e === "no") {
-                copy.previouslyApplied = e === "yes" ? {value: "yes", text: "Yes"} : {value: "no", text: "No"}
+                copy.previouslyApplied = e === "yes" ? { value: "yes", text: "Yes" } : { value: "no", text: "No" }
             } else {
-                copy.gender = e === "male" ? {value: "male", text: "Male"} : {value: "female", text: "Female"}
+                copy.gender = e === "male" ? { value: "male", text: "Male" } : { value: "female", text: "Female" }
             }
         }
         setFormData(copy)
@@ -72,55 +72,55 @@ const JoinUs = () => {
                 <div className="join-us_content_form">
                     <InputConfig>
                         <Input name="name" placeholder="Name" value={formData.name} type="string"
-                               onChange={inputHandle}/>
+                            onChange={inputHandle} />
                     </InputConfig>
                     <InputConfig>
                         <Input name="surname" placeholder="surname" value={formData.surname} type="string"
-                               onChange={inputHandle}/>
+                            onChange={inputHandle} />
                     </InputConfig>
                     <InputConfig>
-                        <Input name="age" placeholder="Age" value={formData.age} type="number" onChange={inputHandle}/>
+                        <Input name="age" placeholder="Age" value={formData.age} type="number" onChange={inputHandle} />
                     </InputConfig>
                     <InputConfig>
                         <Input name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} type="string"
-                               onChange={inputHandle}/>
+                            onChange={inputHandle} />
                     </InputConfig>
                     <InputConfig>
                         <Input name="email" placeholder="Email" value={formData.email} type="email"
-                               onChange={inputHandle}/>
+                            onChange={inputHandle} />
                     </InputConfig>
                     <div className="join-us_content_form_select">
                         <InputConfig>
                             <Select
                                 placeholder="Have you applied before?"
-                                style={{width: "inherit"}}
+                                style={{ width: "inherit" }}
                                 value={formData.previouslyApplied}
                                 options={[
-                                    {value: "yes", text: "Yes"},
-                                    {value: "no", text: "No"}
+                                    { value: "yes", text: "Yes" },
+                                    { value: "no", text: "No" }
                                 ]}
                                 onChange={inputHandle}
                             />
                         </InputConfig>
                     </div>
-                    <div className="join-us_content_form_select">
+                    {/* <div className="join-us_content_form_select">
                         <InputConfig>
                             <Select
                                 placeholder="Select a gender"
                                 value={formData.gender}
-                                style={{width: "inherit"}}
+                                style={{ width: "inherit" }}
                                 options={[
-                                    {value: "male", text: "Male"},
-                                    {value: "female", text: "Female"}
+                                    { value: "male", text: "Male" },
+                                    { value: "female", text: "Female" }
                                 ]}
                                 onChange={inputHandle}
                             />
                         </InputConfig>
-                    </div>
+                    </div> */}
                     <div className="join-us_content_form_btn">
                         <Button
                             type="primary"
-                            style={{width: 100, backgroundColor: "#162831"}}
+                            style={{ width: 100, backgroundColor: "#162831" }}
                             size={"large"}
                             onClick={join}
                         >
@@ -130,7 +130,7 @@ const JoinUs = () => {
                 </div>
                 <div className="join-us_content_img">
                     <div>
-                        <img alt="join-us" src={png.Tree}/>
+                        <img alt="join-us" src={joinImg} />
                     </div>
                 </div>
             </div>
@@ -146,8 +146,8 @@ const JoinUs = () => {
     )
 }
 
-export const InputConfig = ({children}) => {
-    const {width} = useWindowSize()
+export const InputConfig = ({ children }) => {
+    const { width } = useWindowSize()
     return (
         <ConfigProvider
             theme={{
@@ -163,6 +163,4 @@ export const InputConfig = ({children}) => {
         </ConfigProvider>
     )
 }
-
-
 export default JoinUs

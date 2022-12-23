@@ -54,7 +54,7 @@ const FAQ = () => {
         <section className="faq-container">
             <h1 className="faq-container_title">FAQ</h1>
             <div className="faq-container_content">
-                <div className="card wrapper">
+                <div className=" wrapper">
                     <div className="card-body">
                         {faqs.map((faq, index) => {
                             return (
