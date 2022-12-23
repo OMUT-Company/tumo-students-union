@@ -23,10 +23,8 @@ const Volunteering = () => {
             </div>
             <p className="headerOrg">If you want to make a difference and contribute,you can frill out this form</p>
             <div className="organization_form">
-              
                 <OrganizationOfferForm />
             </div>
-            
         </div>
     )
 }

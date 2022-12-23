@@ -10,6 +10,7 @@ const CurrentEventModal = ({currentEvent, currentModal, setCurrentModal}) => {
     const remove = (id) => {
         dispatch(removeEvent({id}))
     }
+
     return (
         <Modal
             title={currentEvent.data?.name}

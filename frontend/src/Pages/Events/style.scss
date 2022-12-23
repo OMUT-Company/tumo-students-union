@@ -1,3 +1,4 @@
+
 .donation_header{
     margin-bottom: 191px;    position: relative;
     img{
@@ -32,8 +33,20 @@ margin: auto;
 p{
 
 }}
-.headerOrg{
-font-size: 3rem;
-padding: 0 20px;
-margin: 40px 0;
+.headerOrg {
+  font-size: 3rem;
+  padding: 0 20px;
+  margin: 40px 0;
+
+  .events-modal {
+    &_form {
+      input {
+        margin-bottom: 10px;
+      }
+
+      &_select {
+        margin-bottom: 10px;
+      }
+    }
+  }
 }
