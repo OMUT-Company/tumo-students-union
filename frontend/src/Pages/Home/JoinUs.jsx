@@ -164,21 +164,5 @@ export const InputConfig = ({children}) => {
     )
 }
 
-export const ButtonConfig = ({children}) => {
-    return (
-        <ConfigProvider
-            theme={{
-                token: {
-                    colorPrimary: '#ffffff',
-                    colorBgContainer: "#00b96b",
-                    fontSize: "20px",
-                    screenMD: 20
-                },
-            }}
-        >
-            {children}
-        </ConfigProvider>
-    )
-}
 
 export default JoinUs

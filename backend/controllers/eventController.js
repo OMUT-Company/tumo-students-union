@@ -149,6 +149,7 @@ const applyAnEvent = asyncHandler(async (req, res) => {
                     })
                 }
             } else {
+
                 res.status(400).json({
                     success: false,
                     data: null,
@@ -193,6 +194,7 @@ const applyAnEvent = asyncHandler(async (req, res) => {
             }
         }
     } catch (error) {
+        console.log(error)
         res.status(400).json({
             success: false,
             data: null,
